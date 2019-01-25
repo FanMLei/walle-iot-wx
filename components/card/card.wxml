@@ -1,0 +1,10 @@
+<!--components/card.wxml-->
+<view class='card-container {{bgColor}}'>
+  <view class='icon-container'>
+    <image src='../../static/imgs/{{imgs}}.png'mode='aspectFit' class='left-img'></image>
+  </view>
+  <view class='desc'>
+    <view class='title'>{{title}}</view>
+    <view class='number'>{{endNum}}</view>
+  </view>
+</view>

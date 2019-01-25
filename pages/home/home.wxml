@@ -1,0 +1,31 @@
+<view class='home-container'>
+  <view class='card-pane'>
+    <i-row>
+      <i-col span="12" i-class="col-class" wx:for='{{card}}' wx:key="card">
+        <card bg-color='c{{index}}' end-num='{{item.num}}' title='{{item.title}}' imgs='{{item.imgs}}'></card>   
+      </i-col>
+    </i-row>
+  </view> 
+ 
+  <i-row>
+    <i-col span="12" i-class="col-class">
+    <canvas canvas-id="pieCanvas" class="pie"></canvas>
+    </i-col>
+    <i-col span="12" i-class="col-class">
+    <canvas canvas-id="pieCanvas1" class="pie"></canvas>
+    </i-col>
+  </i-row>
+  
+  <!-- <view class="pie">
+  <canvas canvas-id="pieCanvas1"></canvas>
+  </view> --> 
+     
+ 
+  <view class='line-container'>
+  <canvas canvas-id="lineCanvas"></canvas>
+  </view>
+  
+  
+  <!-- <canvas canvas-id="pieCanvas" class="canvas"></canvas> -->
+ 
+</view>

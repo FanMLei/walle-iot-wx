@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "i-row": "../../dist/row/index",
+    "card": "../../components/card/card",
+    "i-col": "../../dist/col/index",
+    "ec-canvas": "../../components/ec-canvas/ec-canvas"
+  },
+  "navigationBarTitleText": "主页" 
+}

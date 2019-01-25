@@ -1,0 +1,51 @@
+{
+  "pages": [  
+    "pages/home1/home",
+    "pages/index/index",
+    "pages/manage/manage",
+    "pages/console/console",
+    "pages/aboutme/aboutme",
+    "pages/chart/chart",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundColor":"#e8eaed",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh":true
+  },
+  "tabBar": {
+    "selectedColor":"#1296db",
+    "borderStyle":"black",
+    "list": [{
+      "pagePath": "pages/home1/home",
+      "text": "总览",
+      "iconPath": "static/imgs/home.png",
+      "selectedIconPath": "static/imgs/home_select.png"
+    },
+    {
+      "pagePath": "pages/chart/chart",
+      "text": "数据",
+      "iconPath": "static/imgs/history_chart.png",
+      "selectedIconPath": "static/imgs/history_chart_select.png"
+    },
+    {
+      "pagePath": "pages/console/console",
+      "text": "指令",
+      "iconPath": "static/imgs/console.png",
+      "selectedIconPath": "static/imgs/console_select.png"
+    },
+    {
+      "pagePath": "pages/aboutme/aboutme",
+      "text": "我的",
+      "iconPath": "static/imgs/me.png",
+      "selectedIconPath": "static/imgs/me_select.png"
+    }]
+  },
+  "networkTimeout":{
+    "requset":6000,
+    "connectSocket":2000
+  }
+}
