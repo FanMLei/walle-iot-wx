@@ -1,9 +1,9 @@
 {
   "usingComponents": {
-    "i-row": "../../dist/row/index",
-    "i-col": "../../dist/col/index",
-    "i-toast": "../../dist/toast/index",
-    "line-chart": "../../components/line-chart/line-chart"
+    "line-chart": "../../components/line-chart/line-chart",
+    "i-collapse": "../../dist/collapse/index",
+    "i-collapse-item": "../../dist/collapse-item/index",
+    "i-toast": "../../dist/toast/index"
   },
   "navigationBarTitleText": "历史数据"
 }

@@ -1,11 +1,11 @@
 {
   "pages": [  
+    "pages/chart/chart",
     "pages/home1/home",
     "pages/index/index",
     "pages/manage/manage",
     "pages/console/console",
-    "pages/aboutme/aboutme",
-    "pages/chart/chart",
+    "pages/aboutme/aboutme", 
     "pages/logs/logs"
   ],
   "window": {

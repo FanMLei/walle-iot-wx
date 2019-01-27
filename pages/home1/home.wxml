@@ -45,7 +45,7 @@
   </view>
   <!-- 单点数据结束 -->
   <!-- 趋势图 -->
-  <line-chart id='line-chart' chart-id='test' title='数据上传趋势' chart-data='{{chartData}}' chart-name='单日上传总量'></line-chart>
+  <line-chart id='line-chart' chart-id='test' title='数据上传趋势' chart-data='{{chartData}}' chart-name='单日上传总量' subtext='最近七日记录'></line-chart>
   <!-- 趋势图结束 -->
   <!-- 提示框 -->
   <i-toast id="toast" />

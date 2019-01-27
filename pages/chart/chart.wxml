@@ -1,2 +1,19 @@
-<!--pages/chart/chart.wxml-->
-
+<view>
+  <view wx:if="{{deviceInfo.length>0}}">
+    <view wx:for="{{deviceInfo}}" wx:for-item='device' wx:key='device'>
+      <text class="caption-title">{{device.name}}</text>
+      <i-collapse name='{{device.name}}'>
+        <view class="caption-wrap">
+          <i-collapse-item title='{{stream.name}}' data-streamId='{{stream.id}}' data-chartId='{{stream.name}}{{stream.id}}' bindtap='getChartData' wx:for='{{device.stream}}' wx:for-item='stream' wx:key='stream'>
+            <view slot="content">
+              <line-chart id='{{stream.name}}{{stream.id}}' chart-id='chart-{{stream.name}}{{stream.id}}' chart-name=''></line-chart>
+            </view>
+          </i-collapse-item>
+        </view>
+      </i-collapse>
+      <i-toast id="toast" />
+    </view>
+  </view>
+  <view wx:else>抱歉未找到你的设备信息</view>
+<i-toast id="toast" />
+</view>

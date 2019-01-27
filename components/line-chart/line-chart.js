@@ -25,7 +25,11 @@ Component({
     chartName:{
       type: String,
       value: ''
-    }
+    },
+    subtext: {
+      type: String,
+      value: ''
+    },
   },
   data: {
     ec: {},
@@ -49,7 +53,7 @@ Component({
               fontSize: '16'
             },
             left:'center',
-            subtext:'最近七日'
+            subtext:this.data.subtext
           },
           tooltip: {
             trigger: 'axis'

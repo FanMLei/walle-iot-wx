@@ -1,4 +1,3 @@
-// import * as echarts from '../../components/ec-canvas/echarts';
 const { $Toast } = require('../../dist/base/index');
 // 基础配置
 import config from '../../config/config.js'
@@ -10,7 +9,6 @@ Page({
     newDataNum:0,
     newTriggerNum:0,
     chartData:[],
-
   },
   onLoad(){
     // 显示加载弹窗
