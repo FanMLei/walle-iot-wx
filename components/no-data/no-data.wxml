@@ -1,0 +1,5 @@
+<!--components/not-found/no-data.wxml-->
+<view class='no-data'>
+  {{title}}
+  
+</view>

@@ -1,10 +1,15 @@
 {
-  "pages": [  
+  "pages": [ 
+    "pages/console/console",
     "pages/chart/chart",
-    "pages/home1/home",
+    "pages/home/home",
+    
+    "pages/login/login",
+    
+    
     "pages/index/index",
     "pages/manage/manage",
-    "pages/console/console",
+
     "pages/aboutme/aboutme", 
     "pages/logs/logs"
   ],
@@ -20,14 +25,14 @@
     "selectedColor":"#1296db",
     "borderStyle":"black",
     "list": [{
-      "pagePath": "pages/home1/home",
+      "pagePath": "pages/home/home",
       "text": "总览",
       "iconPath": "static/imgs/home.png",
       "selectedIconPath": "static/imgs/home_select.png"
     },
     {
       "pagePath": "pages/chart/chart",
-      "text": "数据",
+      "text": "历史数据",
       "iconPath": "static/imgs/history_chart.png",
       "selectedIconPath": "static/imgs/history_chart_select.png"
     },
@@ -43,9 +48,5 @@
       "iconPath": "static/imgs/me.png",
       "selectedIconPath": "static/imgs/me_select.png"
     }]
-  },
-  "networkTimeout":{
-    "requset":6000,
-    "connectSocket":2000
   }
 }

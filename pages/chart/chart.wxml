@@ -1,7 +1,16 @@
 <view>
-  <view wx:if="{{deviceInfo.length>0}}">
-    <view wx:for="{{deviceInfo}}" wx:for-item='device' wx:key='device'>
-      <text class="caption-title">{{device.name}}</text>
+  <view wx:if="{{deviceInfo.length>0}}" class='chart-container'>
+    <view wx:for="{{deviceInfo}}" wx:for-item='device' wx:key='device' class='device-container'>
+      <!-- 设备名称 -->
+      <view>
+        <view wx:if="{{device.status}}">
+          <image class='img' src='../../static/imgs/online.png' mode='aspectFit'></image>
+        </view>
+        <view wx:else>
+        <image class='img' src='../../static/imgs/offline.png' mode='aspectFit'></image>
+        </view>
+        <text class="device-title">{{device.name}}</text>
+      </view>
       <i-collapse name='{{device.name}}'>
         <view class="caption-wrap">
           <i-collapse-item title='{{stream.name}}' data-streamId='{{stream.id}}' data-chartId='{{stream.name}}{{stream.id}}' bindtap='getChartData' wx:for='{{device.stream}}' wx:for-item='stream' wx:key='stream'>
@@ -14,6 +23,8 @@
       <i-toast id="toast" />
     </view>
   </view>
-  <view wx:else>抱歉未找到你的设备信息</view>
+  <view wx:else>
+    <no-data />
+  </view>
 <i-toast id="toast" />
 </view>

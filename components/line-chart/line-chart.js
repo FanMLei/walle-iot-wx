@@ -35,7 +35,11 @@ Component({
     ec: {},
   },
   methods: {
-    renderData: function () {  
+    renderData: function (data) {  
+      //如果没有传递参数过来默认使用properties中的chartData数据，否则使用传递过来的data作为渲染数据
+      var renderdata = []
+      if(data) renderdata = data
+      else renderdata = this.data.chartData
       this.ecComponent = this.selectComponent('#'+this.data.chartId)
       this.ecComponent.init((canvas, width, height) => {
         // 获取组件的 canvas、width、height 后的回调函数
@@ -74,7 +78,7 @@ Component({
             {
               name: this.data.chartName,
               type: 'line',
-              data: this.data.chartData
+              data: renderdata
             }
           ]
         }

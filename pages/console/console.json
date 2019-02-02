@@ -1,1 +1,6 @@
-{}
+{
+  "usingComponents": {
+    "select-box": "../../components/select-box/select-box"
+  },
+  "navigationBarTitleText": "指令"
+}

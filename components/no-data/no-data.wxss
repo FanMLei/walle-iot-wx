@@ -1,0 +1,7 @@
+/* components/not-found/no-data.wxss */
+.no-data{
+  text-align: center;
+  font-size: 26rpx;
+  margin: 20rpx;
+  color: #ccc;
+}

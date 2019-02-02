@@ -1,2 +1,3 @@
-<!--pages/console/console.wxml-->
-<text>pages/console/console.wxml</text>
+<view>
+  <select-box prop-array='{{selectArray}}'></select-box>
+</view>

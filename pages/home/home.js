@@ -1,91 +1,95 @@
-const app = getApp()
-var wxCharts = require('../../utils/wxcharts-min.js');
+const {
+  $Toast
+} = require('../../dist/base/index');
+// 基础配置
+import config from '../../config/config.js'
+import api from '../../api/api.js'
 
 Page({
   data: {
-    // ec: {
-    // },
-    card:[{
-        title: '接入设备总数',
-        num:12,
-        imgs: 'device_num'
-      },
-      {
-        title: '数据流模版',
-        num: 112,
-        imgs: 'stream_num'
-      },
-      {
-        title: '触发器个数',
-        num: 21,
-        imgs: 'trigger_num'
-      },
-      {
-        title: '上传数据总量',
-        num: 12333,
-        imgs: 'data_num'
-      }
-    ],
-    trigger: ''
+
   },
-  onLoad: function (options) {
-    var windowWidth
-     wx.getSystemInfo({
-      success: function (res) {
-        windowWidth =  res.windowWidth
-      },fail:function(res){
-        windowWidth =  360
+  onLoad() {
+    api.totalInfo((res) => {
+      $Toast.hide()
+      if (res.data.code === 0) {
+        this.setData({
+          totalInfo: res.data.data
+        })
       }
     })
-    console.log(windowWidth)
-    new wxCharts({
-      canvasId: 'pieCanvas',
-      type: 'pie',
-      series: [{
-        name: '花盆 8 次',
-        data: 8,
-      }, {
-          name: '花盆 18 次',
-          data: 8,
-        }],
-      width: 200,
-      height: 300,
-      dataLabel: false
-    });
-    new wxCharts({
-      canvasId: 'pieCanvas1',
-      type: 'pie',
-      series: [{
-        name: '花盆1 1 次',
-        data: 50,
-        },{
-        name: '花盆',
-        data: 30,
-      }],
-      width: 200,
-      height: 300,
-      dataLabel: false
-    });
-    new wxCharts({
-      canvasId: 'lineCanvas',
-      type: 'line',
-      categories: ['2012', '2013', '2014', '2015', '2016', '2017'],
-      series: [{
-        name: '成交量1',
-        data: [0.15, 0.2, 0.45, 0.37, 0.4, 0.8],
-      }, {
-        name: '成交量2',
-        data: [0.30, 0.37, 0.65, 0.78, 0.69, 0.94],
-      }],
-      yAxis: {
-        title: '成交金额 (万元)',
-        format: function (val) {
-          return val.toFixed(2);
-        },
-        min: 0
-      },
-      width: windowWidth,
-      height: 180
-    });
+    api.increaseInfo((res) => {
+      $Toast.hide()
+      if (res.data.code === 0) {
+        this.setData({
+          increaseInfo: res.data.data
+        })
+      }
+    })
+    api.trendInfo((res) => {
+      $Toast.hide()
+      if (res.data.code === 0) {
+        var trendData = []
+        // 将返回数据中的对象转换为数组
+        for (var i = 0; i < res.data.data.length; i++) {
+          trendData.push([res.data.data[i]['time'], res.data.data[i]['num']])
+        }
+        this.setData({
+          trendInfo: trendData
+        })
+        //渲染chart
+        const mychart = this.selectComponent('#line-chart');
+        mychart.renderData()
+      }
+    })
   },
-})
+  //刷新在线设备数目
+  update(event) {
+    api[event.currentTarget.dataset.name]((res) => {
+      console.log(res.data)
+      if (res.data.code === 0) {
+        this.setData({
+          ['increaseInfo[' + event.currentTarget.dataset.index + '].num']: res.data.data
+        })
+      }
+    })
+  },
+ 
+  //下拉刷新
+  onPullDownRefresh() {
+    wx.stopPullDownRefresh()
+    //这里和onload函数一致
+    api.totalInfo((res) => {
+      $Toast.hide()
+      if (res.data.code === 0) {
+        this.setData({
+          totalInfo: res.data.data
+        })
+      }
+    })
+    api.increaseInfo((res) => {
+      $Toast.hide()
+      if (res.data.code === 0) {
+        this.setData({
+          increaseInfo: res.data.data
+        })
+      }
+    })
+    api.trendInfo((res) => {
+      $Toast.hide()
+      if (res.data.code === 0) {
+        var trendData = []
+        // 将返回数据中的对象转换为数组
+        for (var i = 0; i < res.data.data.length; i++) {
+          trendData.push([res.data.data[i]['time'], res.data.data[i]['num']])
+        }
+        this.setData({
+          trendInfo: trendData
+        })
+        //渲染chart
+        const mychart = this.selectComponent('#line-chart');
+        mychart.renderData()
+      }
+    })
+  }
+});

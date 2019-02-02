@@ -1,1 +1,27 @@
 /* pages/chart/chart.wxss */
+page {
+  height: 100%;
+  background-color: #F7F7F7;
+}
+
+.chart-container {
+  padding: 1% 0;
+  background-color: #F7F7F7;
+  height: 100%;
+}
+.device-container{
+  background-color: #fff;
+  margin:1%;
+  padding-top: 1%;
+  border-radius: 20rpx;
+}
+.device-title{
+  font-size:45rpx;
+  margin: 2%;
+}
+.img{
+  width: 50rpx;
+  height: 50rpx;
+  float: left;
+  margin: 5rpx;
+}

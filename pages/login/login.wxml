@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="login-container">
+  <view wx:if="{{userInfo}}">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+    <view class="userinfo-nickname">{{userInfo.nickName}}</view>
+  </view>
+  <view wx:else>
+    loading
+  </view>
+  <button bindtap='test'>jjj</button>
+</view>

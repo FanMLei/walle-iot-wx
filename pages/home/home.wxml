@@ -1,31 +1,38 @@
-<view class='home-container'>
-  <view class='card-pane'>
-    <i-row>
-      <i-col span="12" i-class="col-class" wx:for='{{card}}' wx:key="card">
-        <card bg-color='c{{index}}' end-num='{{item.num}}' title='{{item.title}}' imgs='{{item.imgs}}'></card>   
-      </i-col>
-    </i-row>
-  </view> 
- 
-  <i-row>
-    <i-col span="12" i-class="col-class">
-    <canvas canvas-id="pieCanvas" class="pie"></canvas>
-    </i-col>
-    <i-col span="12" i-class="col-class">
-    <canvas canvas-id="pieCanvas1" class="pie"></canvas>
-    </i-col>
-  </i-row>
-  
-  <!-- <view class="pie">
-  <canvas canvas-id="pieCanvas1"></canvas>
-  </view> --> 
-     
- 
-  <view class='line-container'>
-  <canvas canvas-id="lineCanvas"></canvas>
+<view wx:if='{{totalInfo}}'>
+  <view class='home-container'>
+    <!-- 总数标签 -->
+    <view class='card-pane'>
+      <i-row>
+        <i-col span="12" i-class="col-class" wx:for='{{totalInfo}}' wx:key='{{index}}'>
+          <card bg-color='c{{index}}' end-num='{{item.num}}' title='{{item.title}}' imgs='{{item.name}}'></card>
+        </i-col>
+      </i-row>
+    </view>
+    <!-- 总数标签结束 -->
+    <!-- 新增数据 -->
+    <view>
+      <i-row>
+        <i-col span="8" i-class="col-class" wx:for='{{increaseInfo}}' wx:key='{{index}}'>
+          <view class='new-container' bindtap='update' data-name='{{item.name}}' data-index='{{index}}'>
+            <view class='title'>{{item.title}}</view>
+            <view class='num'>{{item.num}}</view>
+            <view class='tips'>点击刷新</view>
+          </view>
+        </i-col>
+      </i-row>
+    </view>
+    <!-- 新增数据结束 -->
+    <!-- 趋势图 -->
+    <view wx:if="{{trendInfo.length>0}}">
+      <line-chart id='line-chart' chart-id='line' title='数据上传趋势' chart-data='{{trendInfo}}' chart-name='单日上传总量' subtext='最近七日记录'></line-chart>
+    </view>
+    <!-- 趋势图结束 --> 
   </view>
-  
-  
-  <!-- <canvas canvas-id="pieCanvas" class="canvas"></canvas> -->
- 
+</view>
+<view wx:else>
+  <no-data />
+</view>
+<view>
+<!-- 提示框 -->
+<i-toast id="toast" />
 </view>

@@ -3,7 +3,8 @@
     "line-chart": "../../components/line-chart/line-chart",
     "i-collapse": "../../dist/collapse/index",
     "i-collapse-item": "../../dist/collapse-item/index",
-    "i-toast": "../../dist/toast/index"
+    "i-toast": "../../dist/toast/index",
+    "no-data": "../../components/no-data/no-data"
   },
   "navigationBarTitleText": "历史数据"
 }

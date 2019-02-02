@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "i-spin": "../../dist/spin/index",
+    "i-icon": "../../dist/icon/index"
+  },
+  "enablePullDownRefresh":false,
+  "navigationBarTitleText": "用户登录"
+}
