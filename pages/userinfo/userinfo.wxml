@@ -1,0 +1,4 @@
+<!--pages/userinfo/userinfo.wxml-->
+<view class="container">
+  <text>暂不开放!</text>
+</view>
