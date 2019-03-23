@@ -13,9 +13,9 @@
       </view>
       <i-collapse name='{{device.name}}'>
         <view class="caption-wrap">
-          <i-collapse-item title='{{stream.name}}' data-streamId='{{stream.id}}' data-chartId='{{stream.name}}{{stream.id}}' bindtap='getChartData' wx:for='{{device.stream}}' wx:for-item='stream' wx:key='stream'>
+          <i-collapse-item title='{{stream.name}}' data-streamId='{{stream.sid}}' data-chartId='{{stream.name}}{{stream.sid}}' bindtap='getChartData' wx:for='{{device.stream}}' wx:for-item='stream' wx:key='stream'>
             <view slot="content">
-              <line-chart id='{{stream.name}}{{stream.id}}' chart-id='chart-{{stream.name}}{{stream.id}}' chart-name=''></line-chart>
+              <line-chart id='{{stream.name}}{{stream.sid}}' chart-id='chart-{{stream.name}}{{stream.sid}}' chart-name=''></line-chart>
             </view>
           </i-collapse-item>
         </view>

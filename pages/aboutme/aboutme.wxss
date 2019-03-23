@@ -1,1 +1,59 @@
 /* pages/aboutme/aboutme.wxss */
+page {
+  height: 96%;
+  background-color: #F7F7F7;
+}
+.pannel{
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 2%;
+  margin: 2%;
+}
+.userinfo{
+  padding-left: 5%;
+  display: inline-block;
+  width: 65%;
+  height: 100%;
+  align-content: center;
+}
+.user-name{
+  font-size: 45rpx;
+}
+.user-id{
+  font-size: 30rpx;
+  color: #909090;
+  display: inline-block;
+}
+.user-avatar {
+  display: inline-block;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 10px 0 0 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  right: 20px;
+}
+.status{
+  font-size: 12px;
+  padding:1px 6px;
+  margin-left: 16px;
+  color: #FFF;
+  border-radius: 10px;
+}
+.col-class{
+  display:inline-flex;   
+}
+.manage-img{
+  width: 80rpx;
+  height: 80rpx;
+}
+.tips{
+  font-size: 25rpx;
+  color: #1c1c1c;
+}
+.backend{
+  position: absolute;
+  bottom: 0px;
+  width: 96%;
+  padding: 0 2%;
+}

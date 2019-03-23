@@ -1,2 +1,39 @@
-<!--pages/register/register.wxml-->
-<text>pages/register/register.wxml</text>
+<view class="container">
+  <text class='title'>用户注册</text>
+  <form bindsubmit="formSubmit" class='form'>
+    <i-row>
+      <i-col span="6">
+        <text class='label'>登录名称</text>
+      </i-col>
+      <i-col span="18">
+        <input class='input' placeholder-class='tips' placeholder='  登录用户名，不少于4个字符' value='{{ username }}' bindblur='setUsername' type='text' name='username'></input>
+      </i-col>
+    </i-row>
+    <i-row>
+      <i-col span="6">
+        <text class='label' space='true' decode='true'>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</text>
+      </i-col>
+      <i-col span="18">
+        <input class='input' placeholder-class='tips' placeholder='  至少8位，必须包含字母、数字' password='true' value='{{ password }}' bindblur='setPassword' type='text' password='true' name='password'></input>
+      </i-col>
+    </i-row>
+    <i-row>
+      <i-col span="6">
+        <text class='label'>确认密码</text>
+      </i-col>
+      <i-col span="18">
+        <input class='input' placeholder-class='tips' placeholder='  请输入确认密码' password='true' value='{{ password1 }}' bindblur='setPassword1' type='text' password='true' name='password1'></input>
+      </i-col>
+    </i-row>
+    <i-row>
+      <i-col span="6">
+        <text class='label' space='true' decode='true'>邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;箱</text>
+      </i-col>
+      <i-col span="18">
+        <input class='input' placeholder-class='tips' placeholder='  用于触发器通知' value='{{ email }}' bindblur='setEmail' type='text' name='email'></input>
+      </i-col>
+    </i-row>
+    <button class='submit_btn' form-type="submit" type='primary' disabled='{{disabled}}'>注册</button>
+  </form>
+  <text class='error' wx:if='{{error_info}}'>{{error_info}}</text>
+</view>

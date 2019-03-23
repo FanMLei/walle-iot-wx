@@ -1,66 +1,54 @@
 // pages/bind/bind.js
+import api from '../../api/api.js'
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    disabled : true,
+    username:'',
+    password:''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  register: function () {
+    wx.navigateTo({
+      url: '../register/register',
+    })
+  },
+  formSubmit(e) {
+    //通过API接口查询密码是否正确
+    api.bind(e.detail.value.username, e.detail.value.password)
+  },
+  setPassword(e){
+    this.setData({
+      password: e.detail.value
+    })
+    // 修改按钮状态（输入框必须有数据才可点击）
+    if (this.data.password && this.data.username) {
+      this.setData({
+        disabled: false
+      })
+    } else {
+      this.setData({
+        disabled: true
+      })
+    }
+  },
+  setUsername(e) {
+    this.setData({
+      username: e.detail.value
+    })
+    // 修改按钮状态（输入框必须有数据才可点击）
+    if(this.data.password && this.data.username){
+      this.setData({
+        disabled: false
+      })
+    }else{
+      this.setData({
+        disabled: true
+      })
+    }
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

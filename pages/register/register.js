@@ -1,66 +1,78 @@
 // pages/register/register.js
+import api from '../../api/api.js'
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    error_info:'',
+    disabled: true,
+    username: '',
+    password: '',
+    password1: '',
+    email: '',
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  check: function () {
+    var reg = /^\w+((.\w+)|(-\w+))@[A-Za-z0-9]+((.|-)[A-Za-z0-9]+).[A-Za-z0-9]+$/;
+    if (this.data.username.length < 4) {
+      this.setData({
+        error_info: '登录名不合要求，至少4个字符',
+        disabled: true
+      })
+    } else if (this.data.password.length < 8) {
+      this.setData({
+        error_info: '密码长度过短，请重新输入！',
+        disabled: true
+      })
+    }
+    else if (this.data.password != this.data.password1) {
+      this.setData({
+        error_info: '确认密码错误！',
+        disabled: true
+      })
+    }else if(!reg.test(this.data.email)){
+      this.setData({
+        error_info: '邮箱格式错误！',
+        disabled: true
+      })
+    }else {
+      this.setData({
+        error_info: '',
+        disabled: false
+      })
+    }
+  },
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  formSubmit(e) {
+    api.register(
+      e.detail.value.username, 
+      e.detail.value.password, 
+      e.detail.value.email
+    )
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+ 
+  setUsername(e) {
+    this.setData({
+      username: e.detail.value
+    })
+    this.check()
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  setPassword(e) {
+    this.setData({
+      password: e.detail.value
+    })
+    this.check()
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  setPassword1(e) {
+    this.setData({
+      password1: e.detail.value
+    })
+    this.check()
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  setEmail(e) {
+    this.setData({
+      email: e.detail.value
+    })
+    this.check()
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  
 })

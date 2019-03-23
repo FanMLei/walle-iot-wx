@@ -1,1 +1,41 @@
 /* pages/bind/bind.wxss */
+page{
+  background-color: #F7F7F7
+}
+.input-form {
+  margin-top: 20%;
+  display: block;
+  width: 80%;
+  padding: 20px;
+  border-radius: 20rpx;
+  align-items: center;
+  background-color: #FFF
+}
+.title{
+  font-size: 28rpx;
+  padding-top: 40rpx;
+  color: #aaa;
+}
+.input{
+  display: inline-block;
+  margin-bottom: 5px;
+}
+.register{
+  margin-top: 60%;
+  font-size: 28rpx;
+  color: #4285f6
+}
+.tips{
+  font-size: 14px;
+}
+.img{
+  width:30px;
+  display:inline-block;
+  height:100%;
+  padding-right: 15px;
+ 
+}
+.inputBox{
+  height: 40px;
+  padding-bottom: 10px;
+}

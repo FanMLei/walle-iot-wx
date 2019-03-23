@@ -1,6 +1,34 @@
 /* pages/console/console.wxss */
 
 page {
-  height: 100%;
+  height: 98%;
   background-color: #F7F7F7;
+}
+.pannel{
+  margin: 2%;
+  padding: 2%;
+  background-color: #fff;
+  border-radius: 20rpx;
+  position: relative;
+}
+.tags-pannel{
+  margin: 2%;
+  padding: 2% 2% 5% 2%;
+  background-color: #fff;
+  border-radius: 20rpx;
+  position: relative;
+}
+.title{
+  font-size: 30rpx;
+  color:rgb(122, 119, 119);
+  margin: 15rpx 0;
+}
+.edit{
+  margin: 30rpx;
+  font-size:25rpx;
+  color:#7A7777;
+  float:right;
+}
+.tags{
+  margin: 20rpx;
 }

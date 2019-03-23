@@ -1,3 +1,43 @@
 <view>
-  <select-box prop-array='{{selectArray}}'></select-box>
+  <view class='pannel'>
+    发送到指定设备
+    <view class='title'>选择设备</view>
+    <view>
+      <view style='display: inline-block;'>
+        <select-box prop-array='{{selectArray}}'></select-box>
+      </view>
+      <view style='display:inline-block;float:right;margin-top: -15px;'>
+        <i-button bind:click="handleClick" type="success" inline="true" shape="circle" size="small" style=' margin: 0;padding: 0;'>发送指令</i-button>
+      </view>
+    </view>
+    <view class='title'>消息内容</view>
+    <i-input value="{{ devMsg }}" placeholder="请输入消息内容" />
+  </view>
+
+  <view class='pannel'>
+    发送到自组网络
+    <view>
+      <view class='title'>消息内容</view>
+      <i-input value="{{ netMsg }}" placeholder="请输入消息内容" />
+      <view style='height:90rpx;'>
+        <view style='display:inline-block;float:right;margin-top: -10rpx;'>
+          <i-button bind:click="handleClick" type="success" inline="true" shape="circle" size="small">发送指令</i-button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='tags-pannel'>
+    快捷指令
+    <view class='edit'>编辑</view>
+    <view wx:if='{{quickCMD.length>0}}' style="padding-top:20px">
+      <i-tag class="tags" color="{{item.color}}" data-cmd="{{item}}" bindtap="quickSend" wx:for="{{quickCMD}}" wx:key='{{index}}'>
+        {{item.name}}
+      </i-tag>
+    </view>
+    <view wx:else>
+      <no-data title='未找到已经保存快捷指令！' />
+    </view>
+  </view>
+  <i-toast id="toast" />
 </view>

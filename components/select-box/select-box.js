@@ -22,14 +22,14 @@ Component({
   methods: {
     　　　//option的显示与否
     selectToggle: function () {
-      var nowShow = this.data.selectShow;//获取当前option显示的状态
+      var nowShow = this.data.selectShow//获取当前option显示的状态
       //创建动画
       var animation = wx.createAnimation({
         timingFunction: "ease"
       })
       this.animation = animation;
       if (nowShow) {
-        animation.rotate(0).step();
+        animation.rotate(0).step()
         this.setData({
           animationData: animation.export()
         })

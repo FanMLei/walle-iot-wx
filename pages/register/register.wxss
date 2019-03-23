@@ -1,1 +1,39 @@
-/* pages/register/register.wxss */
+/* pages/bind/bind.wxss */
+.title{
+  font-size: 28rpx;
+  padding-top: 40rpx;
+  color: #aaa;
+}
+.form{
+  width: 100%;
+  padding-top: 40px;
+}
+.input{
+  display: inline-block;
+  border: 1px solid #aaa;
+  height: 45px;
+  width: 90%;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.tips{
+  font-size: 14px;
+}
+.label{
+  font-size: 16px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #777;
+}
+.submit_btn{
+  margin-top: 30px;
+  width: 80%;
+}
+.error{
+  font-size: 14px;
+  margin-top: 50px;
+  color: #a94442;
+}

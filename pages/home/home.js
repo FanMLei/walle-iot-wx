@@ -7,7 +7,40 @@ import api from '../../api/api.js'
 
 Page({
   data: {
-
+    totalInfo: [{
+      "title": '接入设备总数',
+      "num": 0,
+      "name": 'device_num'
+    }, {
+      "title": '数据流模版',
+      "num": 0,
+      "name": 'stream_num'
+    }, {
+      "title": '触发器个数',
+      "num": 0,
+      "name": 'trigger_num'
+    }, {
+      "title": '上传数据总量',
+      "num": 0,
+      "name": 'data_num'
+    }],
+    increaseInfo: [
+      {
+        "title": "当前在线设备",
+        "num": 0,
+        "name": "onlineDeviceNum"
+      },
+      {
+        "title": "今日新增数据",
+        "num": 0,
+        "name": "newDataNum"
+      },
+      {
+        "title": "今日触发次数",
+        "num": 0,
+        "name": "newTriggerNum"
+      }
+    ],
   },
   onLoad() {
     api.totalInfo((res) => {

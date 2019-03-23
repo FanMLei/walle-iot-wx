@@ -1,17 +1,13 @@
 {
   "pages": [ 
+    "pages/index/index",
+    "pages/aboutme/aboutme", 
+    "pages/register/register",
+    "pages/bind/bind",
+    "pages/home/home",
     "pages/console/console",
     "pages/chart/chart",
-    "pages/home/home",
-    
-    "pages/login/login",
-    
-    
-    "pages/index/index",
-    "pages/manage/manage",
-
-    "pages/aboutme/aboutme", 
-    "pages/logs/logs"
+    "pages/manage/manage"
   ],
   "window": {
     "backgroundColor":"#e8eaed",

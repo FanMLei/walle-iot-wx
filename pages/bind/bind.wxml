@@ -1,2 +1,23 @@
 <!--pages/bind/bind.wxml-->
-<text>pages/bind/bind.wxml</text>
+<view class="container">
+  <text class='title'>未找到你的信息，请先绑定账户</text>
+  <view class="input-form">
+    <form bindsubmit="formSubmit" bindreset="formReset">
+      <view class="inputBox">
+        <view class='img'>
+          <image src='../../static/imgs/i-username.png' style='display:inline;' mode="aspectFit"></image>
+        </view>
+        <input class='input' placeholder="用户ID/用户名/邮箱" type='text' placeholder-class='tips' value='{{ username }}' name='username' focus='true' bindblur='setUsername' name='username'/>
+      </view>
+      <view class="inputBox">
+        <view class='img'>
+          <image src='../../static/imgs/i-password.png' style='display:inline;' mode="aspectFit"></image>
+        </view>
+        <input class='input' placeholder-class='tips' placeholder='密码' password='true' value='{{ password }}' bindblur='setPassword' type='text' password='true' name='password'></input>
+      </view>
+
+      <button form-type="submit" type='primary' disabled='{{disabled}}'>绑定</button>
+    </form>
+  </view>
+  <text bindtap='register' class='register'>没有账户，现在去注册！</text>
+</view>

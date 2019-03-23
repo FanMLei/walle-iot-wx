@@ -1,2 +1,22 @@
 <!--pages/aboutme/aboutme.wxml-->
-<text>pages/aboutme/aboutme.wxml</text>
+<view>
+  <view class='pannel'>
+    <view class='userinfo'>
+      <view class='user-name'>
+        <open-data type="userNickName" lang="zh_CN"></open-data>
+      </view>
+      <view class='user-id'>*****</view>
+      <text wx:if='{{status}}' class='status' style='background-color:#27cc85'>已绑定</text>
+      <text wx:else class='status' style='background-color:#ea2000'>未绑定</text>
+    </view>
+    <view class="user-avatar">
+      <open-data type="userAvatarUrl">
+      </open-data>
+    </view>
+  </view>
+  <view class='backend'>
+   <!-- <button type='primary' style='margin-bottom:10px;' bindtap='exchange'>更换绑定</button> -->
+    <button type='warn' style='margin-bottom:10px;' bindtap='exit'>退出登录</button>
+  </view>
+
+</view>

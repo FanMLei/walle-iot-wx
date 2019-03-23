@@ -1,5 +1,5 @@
 .com-selectBox{
-    width: 200px;
+    width: 150px;
 }
 .com-sContent{
     border: 1px solid #e2e2e2;

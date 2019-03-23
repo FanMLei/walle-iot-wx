@@ -1,6 +1,12 @@
 {
   "usingComponents": {
-    "select-box": "../../components/select-box/select-box"
+    "select-box": "../../components/select-box/select-box",
+    "i-button": "../../dist/button/index",
+    "i-tag": "../../dist/tag/index",
+    "i-input": "../../dist/input/index",
+    "i-toast": "../../dist/toast/index",
+    "no-data": "../../components/no-data/no-data"
   },
-  "navigationBarTitleText": "指令"
+  "navigationBarTitleText": "指令",
+  "enablePullDownRefresh": false
 }

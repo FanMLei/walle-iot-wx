@@ -1,69 +1,41 @@
-// pages/manage/manage.js
+//index.js
+//引入API接口函数
+import api from '../../api/api.js'
+//获取应用实例
+const app = getApp()
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-    device_num:0,
-    stream_num:0,
-    trigger_num:0,
-    data_num:0
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  //用户登录
+  login: function() {
+    // 获取code
+    wx.login({
+      success: res => {
+        if (res.code) {
+          // 访问后台登录接口
+          api.login(res.code)
+        }
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  register: function(){
+    wx.navigateTo({
+      url: '../register/register',
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  onLoad: function() {
+    // 获取本地的jwt，如果有则跳转到home页面，否则重新获取jwt
+    wx.getStorage({
+      key: 'jwt',
+      success: function(res) {
+        wx.switchTab({
+          url: '../home/home'
+        })
+      },
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

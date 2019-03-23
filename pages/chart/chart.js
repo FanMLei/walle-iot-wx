@@ -51,36 +51,15 @@ Page({
     }
   },
   onPullDownRefresh() {
-    wx.showNavigationBarLoading() //在标题栏中显示加载
+    wx.stopPullDownRefresh()
     //这里和onload函数一致
-    wx: wx.request({
-      url: config.baseUrl + '/wx/device_info',
-      success: (res) => {
-        if (res.data.code === 0) {
-          wx.hideNavigationBarLoading()
-          wx.stopPullDownRefresh()
-          this.setData({
-            deviceInfo: res.data.data
-          })
-        } else {
-          wx.hideNavigationBarLoading()
-          wx.stopPullDownRefresh()
-          $Toast({
-            content: '数据请求失败' + res.data.msg,
-            type: 'error',
-            duration: 2
-          });
-        }
-      },
-      fail: (res) => {
-        wx.hideNavigationBarLoading()
-        wx.stopPullDownRefresh()
-        $Toast({
-          content: '数据请求超时',
-          type: 'error',
-          duration: 2
-        });
-      },
-    });
+    api.deviceInfo((res) => {
+      if (res.data.code === 0) {
+        $Toast.hide()
+        this.setData({
+          deviceInfo: res.data.data
+        })
+      }
+    })
   }
 })
