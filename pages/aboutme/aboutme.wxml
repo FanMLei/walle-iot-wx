@@ -1,21 +1,72 @@
 <!--pages/aboutme/aboutme.wxml-->
 <view>
   <view class='pannel'>
-    <view class='userinfo'>
-      <view class='user-name'>
-        <open-data type="userNickName" lang="zh_CN"></open-data>
+    <navigator url="../userinfo/userinfo" open-type="navigate" hover-class="navigator-hover">
+      <view class='userinfo'>
+        <view class='user-name'>
+          <open-data type="userNickName" lang="zh_CN"></open-data>
+        </view>
+        <view class='user-id'>*****</view>
+        <text wx:if='{{status}}' class='status' style='background-color:#27cc85'>已绑定</text>
+        <text wx:else class='status' style='background-color:#ea2000'>未绑定</text>
       </view>
-      <view class='user-id'>*****</view>
-      <text wx:if='{{status}}' class='status' style='background-color:#27cc85'>已绑定</text>
-      <text wx:else class='status' style='background-color:#ea2000'>未绑定</text>
-    </view>
-    <view class="user-avatar">
-      <open-data type="userAvatarUrl">
-      </open-data>
-    </view>
+      <view class="user-avatar">
+        <open-data type="userAvatarUrl">
+        </open-data>
+      </view>
+      <image src='../../static/imgs/right.png' class='com-sImg'></image>
+    </navigator>
   </view>
+
+  <view class='pannel'>
+    <i-row>
+      <navigator url="../device/device" open-type="navigate" hover-class="navigator-hover">
+        <i-col span="6">
+          <view class='col-item'>
+            <image class='item-image' src='../../static/imgs/device.png' mode='widthFix'></image>
+            <text class='item-title'>设备</text>
+          </view>
+        </i-col>
+      </navigator>
+      <navigator url="../stream/stream" open-type="navigate" hover-class="navigator-hover">
+        <i-col span="6">
+          <view class='col-item'>
+            <image class='item-image' mode='widthFix' src='../../static/imgs/stream.png'></image>
+            <text class='item-title'>设备流</text>
+          </view>
+        </i-col>
+      </navigator>
+      <navigator url="../trigger/trigger" open-type="navigate" hover-class="navigator-hover">
+        <i-col span="6">
+          <view class='col-item'>
+            <image class='item-image' mode='widthFix' src='../../static/imgs/trigger.png'></image>
+            <text class='item-title'>触发器</text>
+          </view>
+        </i-col>
+      </navigator>
+      <navigator url="../network/network" open-type="navigate" hover-class="navigator-hover">
+        <i-col span="6">
+          <view class='col-item'>
+            <image class='item-image' mode='widthFix' src='../../static/imgs/network.png'></image>
+            <text class='item-title'>自组网</text>
+          </view>
+        </i-col>
+      </navigator>
+    </i-row>
+  </view>
+
+  <view class='pannel'>
+    <navigator url="../setting/setting" open-type="navigate" hover-class="btn-hover" hover-stay-time='0'>
+      <button class='btn'>设置</button>
+    </navigator>
+    <navigator url="../bind/bind" open-type="navigate" hover-class="btn-hover" hover-stay-time='0'>
+      <button class='btn'>更改绑定</button>
+    </navigator>
+    <button open-type='contact' class='btn'>意见反馈</button>
+    <button open-type='share' class='btn'>分享小程序</button>
+  </view>
+  
   <view class='backend'>
-   <!-- <button type='primary' style='margin-bottom:10px;' bindtap='exchange'>更换绑定</button> -->
     <button type='warn' style='margin-bottom:10px;' bindtap='exit'>退出登录</button>
   </view>
 

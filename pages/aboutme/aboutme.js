@@ -21,14 +21,10 @@ Page({
       },
     })
   },
-  // exchange: function(){
-  //   wx.removeStorage({
-  //     key: 'jwt',
-  //     success: function (res) {
-  //       wx.redirectTo({
-  //         url: '../bind/bind'
-  //       })
-  //     },
-  //   })
-  // }
+  userinfo: function(){
+    wx.navigateTo({
+     url: '../userinfo/userinfo'
+    })
+  },
+
 })
