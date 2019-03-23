@@ -1,0 +1,19 @@
+page {
+  height: 96%;
+  background-color: #f7f7f7;
+}
+.pannel {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 2% 4%;
+  margin: 2%;
+  position: relative;
+}
+.title{
+  display: inline-block;
+  font-size: 14px;
+}
+.data{
+  display: inline-block;
+  
+}

@@ -1,0 +1,66 @@
+<view>
+  <view wx:for="{{deviceInfo}}" wx:key="index" class='pannel'>
+    <i-row>
+      <i-col span="4" i-class="col-class">
+        <view class='title'>
+          设备名:
+        </view>
+      </i-col>
+      <i-col span="8" i-class="col-class">
+        <view>{{item.name}}</view>
+      </i-col>
+      <i-col span="3" i-class="col-class">
+        <view class='title'>
+          状态:
+        </view>
+      </i-col>
+      <i-col span="7" i-class="col-class">
+        <view>{{item.status}}</view>
+      </i-col>
+      <i-col span="2" i-class="col-class">
+        <view style='font-size:25rpx;color:#7A7777;float:right;'>编辑</view>
+      </i-col>
+    </i-row>
+    <i-row>
+      <i-col span="4" i-class="col-class">
+        <view class='title'>
+          设备ID:
+        </view>
+      </i-col>
+      <i-col span="6" i-class="col-class">
+        <view class='title'>
+          {{item.did}}
+        </view>
+      </i-col>
+      <i-col span="5" i-class="col-class">
+        <view class='title'>
+          客户端ID:
+        </view>
+      </i-col>
+      <i-col span="9" i-class="col-class">
+        <view class='title'>
+          {{item.cid}}
+        </view>
+      </i-col>
+    </i-row>
+    <i-row>
+      <i-col span="4" i-class="col-class">
+        <view class='title'>
+          Token:
+        </view>
+      </i-col>
+      <i-col span="12" i-class="col-class">
+        <text >
+          {{item.token}}
+        </text>
+      </i-col>
+    </i-row>
+    <view>
+      token {{item.token}}
+    </view>
+    <view>
+      客户端ID {{item.cid}}
+    </view>
+  </view>
+  <i-toast id="toast" />
+</view>
