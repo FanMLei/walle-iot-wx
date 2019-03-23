@@ -2,6 +2,7 @@ const {
   $Toast
 } = require('../dist/base/index'); //提示框
 
+
 const md5 = require('../utils/md5.min.js')
 
 // baseURL
