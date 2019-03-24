@@ -3,7 +3,8 @@
     "i-toast": "../../dist/toast/index",
     "no-data": "../../components/no-data/no-data",
     "i-row": "../../dist/row/index",
-    "i-col": "../../dist/col/index"
+    "i-col": "../../dist/col/index",
+    "i-tag": "../../dist/tag/index"
   },
   "navigationBarTitleText": "设备管理"
 }

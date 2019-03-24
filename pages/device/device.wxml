@@ -1,66 +1,169 @@
+<wxs module='handle'>
+  var status = function(s) {
+    if (s) {
+      return '离线'
+    } else {
+      return '在线'
+    }
+  };
+  var tags = function(t) {
+    if (t) {
+      return t.split(',')
+    } else {
+      return ['无']
+    }
+  };
+  var introduce = function(i) {
+    if (i) {
+      return i
+    } else {
+      return ''
+    }
+  };
+  module.exports = {
+    status: status,
+    tags: tags,
+    introduce: introduce,
+  };
+</wxs>
 <view>
-  <view wx:for="{{deviceInfo}}" wx:key="index" class='pannel'>
-    <i-row>
-      <i-col span="4" i-class="col-class">
-        <view class='title'>
-          设备名:
-        </view>
-      </i-col>
-      <i-col span="8" i-class="col-class">
-        <view>{{item.name}}</view>
-      </i-col>
-      <i-col span="3" i-class="col-class">
-        <view class='title'>
-          状态:
-        </view>
-      </i-col>
-      <i-col span="7" i-class="col-class">
-        <view>{{item.status}}</view>
-      </i-col>
-      <i-col span="2" i-class="col-class">
-        <view style='font-size:25rpx;color:#7A7777;float:right;'>编辑</view>
-      </i-col>
-    </i-row>
-    <i-row>
-      <i-col span="4" i-class="col-class">
-        <view class='title'>
-          设备ID:
-        </view>
-      </i-col>
-      <i-col span="6" i-class="col-class">
-        <view class='title'>
-          {{item.did}}
-        </view>
-      </i-col>
-      <i-col span="5" i-class="col-class">
-        <view class='title'>
-          客户端ID:
-        </view>
-      </i-col>
-      <i-col span="9" i-class="col-class">
-        <view class='title'>
-          {{item.cid}}
-        </view>
-      </i-col>
-    </i-row>
-    <i-row>
-      <i-col span="4" i-class="col-class">
-        <view class='title'>
-          Token:
-        </view>
-      </i-col>
-      <i-col span="12" i-class="col-class">
-        <text >
-          {{item.token}}
-        </text>
-      </i-col>
-    </i-row>
-    <view>
-      token {{item.token}}
-    </view>
-    <view>
-      客户端ID {{item.cid}}
+  <view wx:if="{{deviceInfo.length>0}}">
+    <view wx:for="{{deviceInfo}}" wx:key="index" class='pannel'>
+      <i-row>
+        <i-col span="4" i-class="col-class">
+          <view class='title'>设备名:</view>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <text selectable='true' class='data'>{{item.name}}</text>
+        </i-col>
+        <i-col offset='1' span="4" i-class="col-class">
+          <view class='title'>状态:</view>
+        </i-col>
+        <i-col span="8" i-class="col-class">
+          <view wx:if="{{item.status}}" class='title'>
+            <image class='img' src='../../static/imgs/online.png' mode='aspectFit'></image>
+          </view>
+          <view wx:else class='title'>
+            <image class='img' src='../../static/imgs/offline.png' mode='aspectFit'></image>
+          </view>
+          <text selectable='true' class='data'>{{handle.status(item.status)}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col span="4" i-class="col-class">
+          <view class='title'>设备ID:</view>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <text selectable='true' class='data'>{{item.did}}</text>
+        </i-col>
+        <i-col offset='1' span="5" i-class="col-class">
+          <view class='title'>客户端ID:</view>
+        </i-col>
+        <i-col span="8" i-class="col-class">
+          <text selectable='true' class='data'>{{item.cid}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col span="4" i-class="col-class">
+          <view class='title'>Token:</view>
+        </i-col>
+        <i-col span="12" i-class="col-class">
+          <text selectable='true' class='data'>{{item.token}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col span="5" i-class="col-class">
+          <view class='title'>创建时间:</view>
+        </i-col>
+        <i-col span="12" i-class="col-class">
+          <text selectable='true' class='data'>{{item.ctime}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col span="5" i-class="col-class">
+          <view class='title'>设备标签:</view>
+        </i-col>
+        <i-col span='18'>
+          <i-tag wx:for='{{handle.tags(item.tags)}}' wx:key='' wx:for-item="tag" style='margin: 0 4px;'>{{tag}}</i-tag>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col span="5" i-class="col-class">
+          <view class='title'>设备简介:</view>
+        </i-col>
+        <i-col span='18'>
+          <text selectable='true' style='font-size:14px'>{{item.introduce}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col offset='15' span="4">
+          <button type='primary' class='edit-btn' data-info='{{item}}' data-index='{{index}}'bindtap='editInfo'>编辑</button>
+        </i-col>
+        <i-col offset='1' span="4">
+          <button type='warn' class='edit-btn' data-did='{{item.did}}' data-token='{{item.token}}' data-index='{{index}}' bindtap='deleteInfo'>删除</button>
+        </i-col>
+      </i-row>
     </view>
   </view>
+  <view wx:else>
+    <no-data title='未找到设备信息，请先创建一个设备！' />
+  </view>
+  <button type='primary' class='btn' bindtap='create'>创建设备</button>
+
+  <!-- 新建弹框 -->
+  <modal id="bulid" hidden="{{modal1}}" title="新建设备" confirm-text="确定" cancel-text="取消" bindcancel="cancel1" bindconfirm="confirm1">
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>设备名称</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{newInfo.name}}' type='text' class='input' placeholder='  必填' bindblur='setName' />
+      </i-col>
+    </i-row>
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>设备标签</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{newInfo.tags}}' type='text' class='input' placeholder='  选填,多个标签请用，隔开' bindblur='setTags' />
+      </i-col>
+    </i-row>
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>设备简介</text>
+      </i-col>
+      <i-col span="18">
+        <textarea value='{{newInfo.introduce}} ' class='textarea' placeholder='  选填' bindblur='setIntroduce' />
+      </i-col>
+    </i-row>
+  </modal>
+
+  <!-- 修改弹框 -->
+  <modal id="edit" hidden="{{modal2}}" title="修改信息" confirm-text="确定" cancel-text="取消" bindcancel="cancel2" bindconfirm="confirm2">
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>设备名称</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{editInfo.name}}' type='text' class='input' placeholder='  必填' bindblur='setName2' />
+      </i-col>
+    </i-row>
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>设备标签</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{editInfo.tags}}' type='text' class='input' placeholder='  选填,多个标签请用，隔开' bindblur='setTags2' />
+      </i-col>
+    </i-row>
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>设备简介</text>
+      </i-col>
+      <i-col span="18">
+        <textarea value='{{editInfo.introduce}} ' class='textarea' placeholder='  选填' bindblur='setIntroduce2' />
+      </i-col>
+    </i-row>
+  </modal>
   <i-toast id="toast" />
 </view>

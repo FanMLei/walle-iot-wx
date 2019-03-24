@@ -16,7 +16,7 @@ Page({
   },
   quickSend: function(e) {
     let data = {
-      'topic': e.target.dataset.cmd.device_id,
+      'topic': e.target.dataset.cmd.topic,
       'qos': e.target.dataset.cmd.qos,
       'payload': e.target.dataset.cmd.payload
     }
