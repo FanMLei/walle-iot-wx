@@ -1,12 +1,13 @@
 {
   "pages": [ 
-    "pages/device/device",
     
-    "pages/aboutme/aboutme",
-  
-    "pages/userinfo/userinfo",
-    "pages/index/index",
+    "pages/device/device",
     "pages/register/register",
+    "pages/index/index",
+   
+    "pages/aboutme/aboutme",
+    "pages/userinfo/userinfo",
+   
     "pages/bind/bind",
     "pages/home/home",
     "pages/console/console",

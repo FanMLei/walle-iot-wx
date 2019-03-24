@@ -6,8 +6,8 @@ const {
 const md5 = require('../utils/md5.min.js')
 
 // baseURL
-const baseUrl = 'https://iotforfml.cn'
-// const baseUrl = 'http://127.0.0.1:8000'
+// const baseUrl = 'https://iotforfml.cn'
+const baseUrl = 'http://127.0.0.1:8000'
 
 const login_url = baseUrl + '/user/login_wx' //用户登录
 const bind_url = baseUrl + '/user/bind_wx' //绑定用户
@@ -297,7 +297,57 @@ let sendCmd = function(data, success) {
     },
   })
 }
-
+//创建设备
+let createDevice = function(data,success){
+  wx: wx.request({
+    url: device_info,
+    method: 'POST',
+    data,
+    header: headers,
+    success,
+    fail(res) {
+      $Toast({
+        content: '创建失败',
+        type: 'error',
+        duration: 1
+      });
+    },
+  })
+}
+//删除设备
+let deleteDevice = function(data, success){
+  wx: wx.request({
+    url: device_info,
+    method: 'DELETE',
+    data,
+    header: headers,
+    success,
+    fail(res) {
+      $Toast({
+        content: '删除失败',
+        type: 'error',
+        duration: 1
+      });
+    },
+  })
+}
+//修改设备
+let editDevice = function(data,success){
+  wx: wx.request({
+    url: device_info,
+    method: 'PUT',
+    data,
+    header: headers,
+    success,
+    fail(res) {
+      $Toast({
+        content: '修改失败',
+        type: 'error',
+        duration: 1
+      });
+    },
+  })
+}
 module.exports = {
   login,
   bind,
@@ -311,5 +361,8 @@ module.exports = {
   deviceInfo,
   historyData,
   cmdInfo,
-  sendCmd
+  sendCmd,
+  createDevice,
+  deleteDevice,
+  editDevice
 }
