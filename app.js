@@ -1,5 +1,4 @@
-import api from 'api/api.js'
-//app.js
+
 App({
   onLaunch: function() {
     // wx.login({
@@ -11,4 +10,7 @@ App({
     //   }
     // })
   },
+  globalData:{
+    s:1
+  }
 })

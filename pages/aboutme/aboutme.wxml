@@ -32,7 +32,7 @@
         <i-col span="6">
           <view class='col-item'>
             <image class='item-image' mode='widthFix' src='../../static/imgs/stream.png'></image>
-            <text class='item-title'>设备流</text>
+            <text class='item-title'>数据流</text>
           </view>
         </i-col>
       </navigator>

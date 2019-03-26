@@ -1,2 +1,161 @@
-<!--pages/stream/stream.wxml-->
-<text>pages/stream/stream.wxml</text>
+<wxs module='handle'>
+  var status = function(s) {
+    if (s) {
+      return '离线'
+    } else {
+      return '在线'
+    }
+  };
+  var tags = function(t) {
+    if (t) {
+      return t.split(',')
+    } else {
+      return ['无']
+    }
+  };
+  var introduce = function(i) {
+    if (i) {
+      return i
+    } else {
+      return ''
+    }
+  };
+  module.exports = {
+    status: status,
+    tags: tags,
+    introduce: introduce,
+  };
+</wxs>
+<view>
+  <view wx:if="{{streamInfo.length>0}}">
+    <view wx:for="{{streamInfo}}" wx:key="index" class='pannel'>
+      <i-row>
+        <i-col span="6" i-class="col-class">
+          <view class='title'>模板名称:</view>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <text selectable='true' class='data'>{{item.name}}</text>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <view class='title'>数据流ID:</view>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <text selectable='true' class='data'>{{item.sid}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col span="6" i-class="col-class">
+          <view class='title'>单位名称:</view>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <text selectable='true' class='data'>{{item.unit}}</text>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <view class='title'>单位符号:</view>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <text selectable='true' class='data'>{{item.symbol}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col span="5" i-class="col-class">
+          <view class='title'>Token:</view>
+        </i-col>
+        <i-col span="12" i-class="col-class">
+          <text selectable='true' class='data'>{{item.token}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col span="5" i-class="col-class">
+          <view class='title'>创建时间:</view>
+        </i-col>
+        <i-col span="12" i-class="col-class">
+          <text selectable='true' class='data'>{{item.ctime}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col span="5" i-class="col-class">
+          <view class='title'>所属设备:</view>
+        </i-col>
+        <i-col span="12" i-class="col-class">
+          <text selectable='true' class='data'>{{item.device}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col offset='13' span="5">
+          <button type='primary' class='edit-btn' data-info='{{item}}' data-index='{{index}}' bindtap='editInfo'>编辑</button>
+        </i-col>
+        <i-col offset='1' span="5">
+          <button type='warn' class='edit-btn' data-sid='{{item.sid}}' data-token='{{item.token}}' data-index='{{index}}' bindtap='deleteInfo'>删除</button>
+        </i-col>
+      </i-row>
+    </view>
+  </view>
+  <view wx:else>
+    <no-data title='未找到数据流信息，请先创建一个数据流！' />
+  </view>
+  <button type='primary' class='btn' bindtap='create'>创建数据流</button>
+  <!-- 新建弹窗 -->
+  <modal id="bulid" hidden="{{modal1}}" title="新建数据流" confirm-text="确定" cancel-text="取消" bindcancel="cancel1" bindconfirm="confirm1">
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>数据名称:</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{newInfo.name}}' type='text' class='input' placeholder='  必填' bindblur='setName' />
+      </i-col>
+    </i-row>
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>选择设备:</text>
+      </i-col>
+      <i-col span="18">
+        <select-box prop-array='{{device}}' bind:myget='setDevice'></select-box>
+      </i-col>
+    </i-row>
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>单位名称:</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{newInfo.unit}}' type='text' class='input' placeholder='  选填' bindblur='setUnit' />
+      </i-col>
+    </i-row>
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>单位符号:</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{newInfo.symbol}}' type='text' class='input' placeholder='  选填' bindblur='setSymbol' />
+      </i-col>
+    </i-row>
+  </modal>
+  <!-- 修改弹窗 -->
+  <modal id="edit" hidden="{{modal2}}" title="修改信息" confirm-text="确定" cancel-text="取消" bindcancel="cancel2" bindconfirm="confirm2">
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>数据名称:</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{editInfo.name}}' type='text' class='input' placeholder='  必填' bindblur='setName2' />
+      </i-col>
+    </i-row>
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>单位名称:</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{editInfo.unit}}' type='text' class='input' placeholder='  选填' bindblur='setUnit2' />
+      </i-col>
+    </i-row>
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>单位符号:</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{editInfo.symbol}}' type='text' class='input' placeholder='  选填' bindblur='setSymbol2' />
+      </i-col>
+    </i-row>
+  </modal>
+  <i-toast id="toast" />
+</view>

@@ -97,9 +97,9 @@ page {
 .btn {
   border: none;
   font-size: 14px;
-  line-height: 50px;
+  line-height: 40px;
   text-align: left;
-  height: 50px;
+  height: 40px;
   background-color: #FFF;
 }
 .btn-hover {

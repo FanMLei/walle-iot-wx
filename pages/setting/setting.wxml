@@ -1,2 +1,3 @@
-<!--pages/setting/setting.wxml-->
-<text>pages/setting/setting.wxml</text>
+<view class="container">
+  <text>暂不开放!</text>
+</view>

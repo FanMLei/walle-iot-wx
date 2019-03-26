@@ -3,7 +3,7 @@
     发送到指定设备
     <view class='title'>选择设备</view>
     <view>
-      <view style='display: inline-block;'>
+      <view style='display: inline-block;width:200px;'>
         <select-box prop-array='{{selectArray}}'></select-box>
       </view>
       <view style='display:inline-block;float:right;margin-top: -15px;'>

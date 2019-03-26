@@ -26,5 +26,8 @@ Page({
      url: '../userinfo/userinfo'
     })
   },
-
+  onPullDownRefresh() {
+    wx.stopPullDownRefresh()
+    this.onLoad()
+  }
 })

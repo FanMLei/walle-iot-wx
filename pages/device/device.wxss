@@ -21,6 +21,7 @@ page {
   font-size: 15px;
 }
 .edit-btn{
+  margin-top: 5px;
   width: 96%;
   height: 30px;
   font-size: 12px;

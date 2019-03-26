@@ -8,7 +8,7 @@
   };
   var tags = function(t) {
     if (t) {
-      return t.split(',')
+      return t.split(' ')
     } else {
       return ['无']
     }
@@ -96,10 +96,10 @@
         </i-col>
       </i-row>
       <i-row>
-        <i-col offset='15' span="4">
-          <button type='primary' class='edit-btn' data-info='{{item}}' data-index='{{index}}'bindtap='editInfo'>编辑</button>
+        <i-col offset='13' span="5">
+          <button type='primary' class='edit-btn' data-info='{{item}}' data-index='{{index}}' bindtap='editInfo'>编辑</button>
         </i-col>
-        <i-col offset='1' span="4">
+        <i-col offset='1' span="5">
           <button type='warn' class='edit-btn' data-did='{{item.did}}' data-token='{{item.token}}' data-index='{{index}}' bindtap='deleteInfo'>删除</button>
         </i-col>
       </i-row>
@@ -125,7 +125,7 @@
         <text class='label'>设备标签</text>
       </i-col>
       <i-col span="18">
-        <input value='{{newInfo.tags}}' type='text' class='input' placeholder='  选填,多个标签请用，隔开' bindblur='setTags' />
+        <input value='{{newInfo.tags}}' type='text' class='input' placeholder='  选填,多个标签请用空格隔开' bindblur='setTags' />
       </i-col>
     </i-row>
     <i-row class='row'>
@@ -133,7 +133,7 @@
         <text class='label'>设备简介</text>
       </i-col>
       <i-col span="18">
-        <textarea value='{{newInfo.introduce}} ' class='textarea' placeholder='  选填' bindblur='setIntroduce' />
+        <textarea value='{{newInfo.introduce}}' class='textarea' placeholder='选填' bindblur='setIntroduce' />
       </i-col>
     </i-row>
   </modal>
@@ -153,7 +153,7 @@
         <text class='label'>设备标签</text>
       </i-col>
       <i-col span="18">
-        <input value='{{editInfo.tags}}' type='text' class='input' placeholder='  选填,多个标签请用，隔开' bindblur='setTags2' />
+        <input value='{{editInfo.tags}}' type='text' class='input' placeholder='  选填,多个标签请用空格隔开' bindblur='setTags2' />
       </i-col>
     </i-row>
     <i-row class='row'>
@@ -161,7 +161,7 @@
         <text class='label'>设备简介</text>
       </i-col>
       <i-col span="18">
-        <textarea value='{{editInfo.introduce}} ' class='textarea' placeholder='  选填' bindblur='setIntroduce2' />
+        <textarea value='{{editInfo.introduce}}' class='textarea' placeholder='  选填' bindblur='setIntroduce2' />
       </i-col>
     </i-row>
   </modal>

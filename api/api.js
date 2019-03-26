@@ -6,8 +6,8 @@ const {
 const md5 = require('../utils/md5.min.js')
 
 // baseURL
-// const baseUrl = 'https://iotforfml.cn'
-const baseUrl = 'http://127.0.0.1:8000'
+const baseUrl = 'https://iotforfml.cn'    
+// const baseUrl = 'http://127.0.0.1:8000'
 
 const login_url = baseUrl + '/user/login_wx' //用户登录
 const bind_url = baseUrl + '/user/bind_wx' //绑定用户
@@ -23,7 +23,7 @@ const new_trigger_num = baseUrl + '/api/trigger/new' //本日触发次数
 
 const device_info = baseUrl + '/api/device/info' //设备信息
 const stream_chart = baseUrl + '/api/stream/chart/' //历史数据
-
+const stream_info = baseUrl + '/api/stream/info' //数据流信息
 const quick_cmd = baseUrl + '/api/cmd/info' //快捷指令
 const send_cmd = baseUrl + '/api/cmd/send' //发送指令
 
@@ -137,7 +137,7 @@ let bind = function(username, password) {
     }
   })
 }
-
+//注册
 let register = function(username, password, email) {
   console.log(username,password,email)
   var password = md5(password)
@@ -348,6 +348,70 @@ let editDevice = function(data,success){
     },
   })
 }
+//数据流信息
+let streamInfo = function(success){
+  beforeFunc()
+  wx: wx.request({
+    url: stream_info,
+    data: params,
+    header: headers,
+    success,
+    fail: failFunc,
+  })
+}
+//创建数据流
+let createStream = function(data,success){
+  wx: wx.request({
+    url: stream_info,
+    method: 'POST',
+    data,
+    header: headers,
+    success,
+    fail(res) {
+      $Toast({
+        content: '创建失败',
+        type: 'error',
+        duration: 1
+      });
+    },
+  })
+}
+//删除数据流
+let deleteStream = function(data,success){
+  wx: wx.request({
+    url: stream_info,
+    method: 'DELETE',
+    data,
+    header: headers,
+    success,
+    fail(res) {
+      $Toast({
+        content: '删除失败',
+        type: 'error',
+        duration: 1
+      });
+    },
+  })
+}
+//修改数据流信息
+let editStream = function(data,success){
+  console.log(data)
+  wx: wx.request({
+    url: stream_info,
+    method: 'PUT',
+    data,
+    header: headers,
+    success,
+    fail(res) {
+      $Toast({
+        content: '修改失败',
+        type: 'error',
+        duration: 1
+      });
+    },
+  })
+}
+
 module.exports = {
   login,
   bind,
@@ -364,5 +428,9 @@ module.exports = {
   sendCmd,
   createDevice,
   deleteDevice,
-  editDevice
+  editDevice,
+  streamInfo,
+  createStream,
+  deleteStream,
+  editStream
 }

@@ -33,6 +33,7 @@ Page({
       newInfo: {
         name: '',
         tags: '',
+        introduce:''
       }
     })
   },
@@ -153,7 +154,6 @@ Page({
         });
       }
     })
-
   },
   //编辑设备信息
   editInfo: function(e) {
