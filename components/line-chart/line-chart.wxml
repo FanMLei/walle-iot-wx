@@ -1,4 +1,0 @@
-<!--components/line-chart/line-chart.wxml-->
-<view style='width:{{width}};height:{{height}}'>
- <ec-canvas  id='{{chartId}}' canvas-id='line-chart' ec="{{ ec }}"></ec-canvas>
-</view>

@@ -1,9 +1,9 @@
 const {
   $Toast
 } = require('../../dist/base/index');
-// 基础配置
-import config from '../../config/config.js'
+
 import api from '../../api/api.js'
+var wxCharts = require('../../utils/wxcharts-min.js');
 
 Page({
   data: {
@@ -43,6 +43,13 @@ Page({
     ],
   },
   onLoad() {
+    var windowWidth = 320;
+    try {
+      var res = wx.getSystemInfoSync();
+      windowWidth = res.windowWidth;
+    } catch (e) {
+      console.error('getSystemInfoSync failed!');
+    }
     api.totalInfo((res) => {
       $Toast.hide()
       if (res.data.code === 0) {
@@ -61,18 +68,38 @@ Page({
     })
     api.trendInfo((res) => {
       $Toast.hide()
-      if (res.data.code === 0) {
-        var trendData = []
-        // 将返回数据中的对象转换为数组
+      if(res.data.code==0){
+        var x = []
+        var y = []
         for (var i = 0; i < res.data.data.length; i++) {
-          trendData.push([res.data.data[i]['time'], res.data.data[i]['num']])
+          x.push(res.data.data[i]['time'])
+          y.push(res.data.data[i]['num'])
         }
-        this.setData({
-          trendInfo: trendData
-        })
-        //渲染chart
-        const mychart = this.selectComponent('#line-chart');
-        mychart.renderData()
+        new wxCharts({
+          canvasId: 'trend', //canvasID
+          type: 'line',   //类型
+          categories: x,
+          legend:false,     //不显示下面的标识
+          animation: true,  //启用动画效果
+          background:'#ffffff',  //背景颜色
+          series: [{
+            name: '',
+            data: y,
+            format: function (val, name) {
+              return val;
+            }
+          }],
+          xAxis: {
+            disableGrid: true  
+          },
+          width: windowWidth,
+          height: 200,
+          dataLabel: false, //图线不显示值
+          dataPointShape: true,
+          extra: {
+            lineStyle: 'curve' //平滑曲线
+          }
+        });
       }
     })
   },
@@ -92,37 +119,6 @@ Page({
   onPullDownRefresh() {
     wx.stopPullDownRefresh()
     //这里和onload函数一致
-    api.totalInfo((res) => {
-      $Toast.hide()
-      if (res.data.code === 0) {
-        this.setData({
-          totalInfo: res.data.data
-        })
-      }
-    })
-    api.increaseInfo((res) => {
-      $Toast.hide()
-      if (res.data.code === 0) {
-        this.setData({
-          increaseInfo: res.data.data
-        })
-      }
-    })
-    api.trendInfo((res) => {
-      $Toast.hide()
-      if (res.data.code === 0) {
-        var trendData = []
-        // 将返回数据中的对象转换为数组
-        for (var i = 0; i < res.data.data.length; i++) {
-          trendData.push([res.data.data[i]['time'], res.data.data[i]['num']])
-        }
-        this.setData({
-          trendInfo: trendData
-        })
-        //渲染chart
-        const mychart = this.selectComponent('#line-chart');
-        mychart.renderData()
-      }
-    })
+    this.onLoad()
   }
 });

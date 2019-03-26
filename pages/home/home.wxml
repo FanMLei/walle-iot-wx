@@ -23,16 +23,17 @@
     </view>
     <!-- 新增数据结束 -->
     <!-- 趋势图 -->
-    <view wx:if="{{trendInfo.length>0}}">
-      <line-chart id='line-chart' chart-id='line' title='数据上传趋势' chart-data='{{trendInfo}}' chart-name='单日上传总量' subtext='最近七日记录'></line-chart>
+    <view class='trend-container'>
+      <view class='title'>最七日数据上传趋势</view>
+      <canvas canvas-id="trend" disable-scroll="true" class="canvas" />
     </view>
-    <!-- 趋势图结束 --> 
+    <!-- 趋势图结束 -->
   </view>
 </view>
 <view wx:else>
   <no-data />
 </view>
 <view>
-<!-- 提示框 -->
-<i-toast id="toast" />
+  <!-- 提示框 -->
+  <i-toast id="toast" />
 </view>

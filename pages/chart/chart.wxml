@@ -1,30 +1,40 @@
 <view>
   <view wx:if="{{deviceInfo.length>0}}" class='chart-container'>
     <view wx:for="{{deviceInfo}}" wx:for-item='device' wx:key='device' class='device-container'>
-      <!-- 设备名称 -->
+      <!-- 设备 -->
       <view>
-        <view wx:if="{{device.status}}">
+        <!-- 设备状态 -->
+        <view wx:if="{{device.status}}" class='device-status'>
           <image class='img' src='../../static/imgs/online.png' mode='aspectFit'></image>
         </view>
-        <view wx:else>
-        <image class='img' src='../../static/imgs/offline.png' mode='aspectFit'></image>
+        <view wx:else class='device-status'>
+          <image class='img' src='../../static/imgs/offline.png' mode='aspectFit'></image>
         </view>
+        <!-- 设备名称 -->
         <text class="device-title">{{device.name}}</text>
       </view>
-      <i-collapse name='{{device.name}}'>
-        <view class="caption-wrap">
-          <i-collapse-item title='{{stream.name}}' data-streamId='{{stream.sid}}' data-chartId='{{stream.name}}{{stream.sid}}' bindtap='getChartData' wx:for='{{device.stream}}' wx:for-item='stream' wx:key='stream'>
+      <!-- 数据流列表 -->
+      <view wx:if='{{device.stream.length>0}}'>
+        <i-collapse name='{{device.name}}'>
+          <i-collapse-item title='{{stream.name}}' i-class='stream-title' data-streamId='{{stream.sid}}' bindtap='getChartData'data-unit='{{stream.unit}}' data-symbol='{{stream.symbol}}' wx:for='{{device.stream}}' wx:for-item='stream' wx:key='stream'>
+            <!-- 图表 -->
             <view slot="content">
-              <line-chart id='{{stream.name}}{{stream.sid}}' chart-id='chart-{{stream.name}}{{stream.sid}}' chart-name=''></line-chart>
+              <canvas canvas-id="{{stream.sid}}" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
             </view>
           </i-collapse-item>
-        </view>
-      </i-collapse>
+        </i-collapse>
+      </view>
+      <!-- 没有数据流的提示 -->
+      <view wx:else>
+        <view style='border-bottom: 1px solid #e6e7e9;'></view>
+        <no-data title='此设备没有添加数据流' />
+        <view style='padding-bottom:5px;'></view>
+      </view>
       <i-toast id="toast" />
     </view>
   </view>
   <view wx:else>
     <no-data />
   </view>
-<i-toast id="toast" />
+  <i-toast id="toast" />
 </view>
