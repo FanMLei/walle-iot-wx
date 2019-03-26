@@ -11,7 +11,9 @@ var wxCharts = require('../../utils/wxcharts-min.js');
 
 Page({
   data: {
-    windowWidth: 320
+    windowWidth: 320,
+    charts: {},
+    chartData: {}
   },
   onLoad() {
     //获取设备信息
@@ -32,96 +34,85 @@ Page({
       console.error('getSystemInfoSync failed!');
     }
   },
-
-  createSimulationData: function() {
-    var categories = [];
-    var data = [];
-    for (var i = 0; i < 10; i++) {
-      categories.push('2016-' + (i + 1));
-      data.push(Math.random() * (20 - 10) + 10);
-    }
-    // data[4] = null;
-    return {
-      categories: categories,
-      data: data
-    }
+  touchHandler: function(e) {
+    this.data.charts[e.target.dataset.canvas].showToolTip(e, {
+      // background: '#7cb5ec',
+      format: function(item, category) {
+        return category + ':' + item.data
+      }
+    });
   },
   //获取数据流数据并刷新到相应的chart中
   getChartData: function(event) {
-    api.historyData(
-      event.target.dataset.streamid,
-      (res) => {
-        $Toast.hide()
-        if (res.data.code === 0) {
-          var x = []
-          var y = []
-          for (var i = 0; i < res.data.data.length; i++) {
-            x.push(res.data.data[i]['time'])
-            y.push(res.data.data[i]['num'])
-          }
-          //防止返回数据为空造成卡死状况
-          if (x.length<=0) x = [0, 0, 0, 0, 0, 0]
-          if (y.length<=0) y = [0, 0, 0, 0, 0, 0]
-          new wxCharts({
-            canvasId: event.currentTarget.dataset.streamid, //canvasID
-            type: 'line',
-            categories: x,
-            legend: false,     //不显示下面的标识
-            animation: true,
-            series: [{
-              name: '',
-              data: y,
-              format: function(val, name) {
-                return val + event.currentTarget.dataset.symbol;
-              }
-            }],
-            xAxis: {
-              disableGrid: true
-            },
-            yAxis: {
-              title: event.currentTarget.dataset.unit + '(' + event.currentTarget.dataset.symbol + ')',
-              format: function(val) {
-                return val.toFixed(2);
-              },
-              min: 0
-            },
-            width: this.data.windowWidth,
-            height: 200,
-            dataLabel: false, //图线不显示值
-            dataPointShape: true,
-            extra: {
-              lineStyle: 'curve' //平滑曲线
+    //先从本地缓存中获取数据，没有在从后台获取
+    var chartData = this.data.chartData[event.currentTarget.dataset.streamid]
+    if (!chartData) {
+      api.historyData(
+        event.currentTarget.dataset.streamid,
+        (res) => {
+          $Toast.hide()
+          if (res.data.code === 0) {
+            var x = []
+            var y = []
+            for (var i = 0; i < res.data.data.length; i++) {
+              x.push(res.data.data[i]['time'])
+              y.push(res.data.data[i]['num'])
             }
-          });
-        }
-      })
-
-    // var renderdata = this.data[event.currentTarget.dataset.chartid]
-    // //检查自带的data中有没有缓存的数据，如果有则使用缓存数据,否则请求接口获取数据
-    // if (renderdata) {
-    //   const mychart = this.selectComponent('#' + event.currentTarget.dataset.chartid)
-    //   mychart.renderData(renderdata)
-    // } else {
-    //   api.historyData(
-    //     event.target.dataset.streamid,
-    //     (res) => {
-    //       $Toast.hide()
-    //       if (res.data.code === 0) {
-    //         var renderdata = []
-    //         for (var j = 0; j < res.data.data.length; j++) {
-    //           renderdata.push([res.data.data[j]['time'], res.data.data[j]['num']])
-    //         }
-    //         const mychart = this.selectComponent('#' + event.currentTarget.dataset.chartid)
-    //         mychart.renderData(renderdata)
-    //         // 将获取的数据存入data中避免重复请求
-    //         // 这里不需要自动刷新没有必要使用setData,而且也不能使用setData
-    //         this.data[event.currentTarget.dataset.chartid] = renderdata
-    //       }
-    //     })
-    //   const mychart = this.selectComponent('#' + event.currentTarget.dataset.chartid)
-    //   mychart.renderData(this.data.testData)
-
-    // }
+            //防止返回数据为空造成卡死状况
+            if (x.length <= 0) x = ['']
+            if (y.length <= 0) y = ['']
+            //调整X轴和提示栏
+            if (x[0]){
+              var legend = x[0].substr(0, 10) + '至' + x[x.length - 1].substr(0, 10)
+              for (var t = 0; t < x.length; t++) {
+                // if (t % 10 != 0) {
+                //   x.splice(t, 1, '')
+                // } else {
+                  x.splice(t, 1, x[t].slice(11, x[t].length))
+                // }
+              }
+            }else{
+              var legend = '暂时无数据！'
+            }
+            //存入data中
+            this.data.chartData[event.currentTarget.dataset.streamid] = {
+              x: x,
+              y: y
+            }
+            this.data.charts[event.currentTarget.dataset.streamid] = new wxCharts({
+              canvasId: event.currentTarget.dataset.streamid, //canvasID
+              type: 'line',
+              categories: x,
+              legend: true, //不显示下面的标识
+              animation: true,
+              series: [{
+                name: legend,
+                data: y,
+                format: function(val, name) {
+                  return val + event.currentTarget.dataset.symbol;
+                }
+              }],
+              xAxis: {
+                disableGrid: true
+              },
+              yAxis: {
+                title: event.currentTarget.dataset.unit + '(' + event.currentTarget.dataset.symbol + ')',
+                format: function(val) {
+                  return val.toFixed(2);
+                },
+                min: 0
+              },
+              width: this.data.windowWidth - 20, //防止显示不全
+              height: 300,
+              dataLabel: false, //图线不显示值
+              dataPointShape: false, //不显示节点
+              extra: {
+                lineStyle: 'curve' //平滑曲线
+              }
+            });
+          }
+        })
+    }
   },
   onPullDownRefresh() {
     wx.stopPullDownRefresh()
@@ -134,5 +125,5 @@ Page({
         })
       }
     })
-  }
+  },
 })

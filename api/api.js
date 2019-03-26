@@ -266,7 +266,13 @@ let historyData = function(id, success) {
     data: params,
     header: headers,
     success,
-    fail: failFunc,
+    fail(res){
+      $Toast({
+        content: '数据获取失败！',
+        type: 'error',
+        duration: 1
+      });
+    },
   })
 }
 //获取快捷指令信息

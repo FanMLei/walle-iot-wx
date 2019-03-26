@@ -25,7 +25,7 @@
     <!-- 趋势图 -->
     <view class='trend-container'>
       <view class='title'>最七日数据上传趋势</view>
-      <canvas canvas-id="trend" disable-scroll="true" class="canvas" />
+      <canvas canvas-id="trend" disable-scroll="true" class="canvas"bindtouchstart="touchHandler" />
     </view>
     <!-- 趋势图结束 -->
   </view>

@@ -1,16 +1,17 @@
 {
   "pages": [ 
+    "pages/console/console",
+    "pages/home/home",
+    
     "pages/chart/chart",
     "pages/index/index",
     "pages/aboutme/aboutme",
     "pages/stream/stream",
-    "pages/console/console",
+ 
     "pages/device/device",
     "pages/register/register",
     "pages/userinfo/userinfo",
     "pages/bind/bind",
-    "pages/home/home", 
-  
     "pages/trigger/trigger",
     "pages/network/network",
     "pages/setting/setting"

@@ -4,7 +4,7 @@ const {
 
 import api from '../../api/api.js'
 var wxCharts = require('../../utils/wxcharts-min.js');
-
+var lineChart = null
 Page({
   data: {
     totalInfo: [{
@@ -75,13 +75,13 @@ Page({
           x.push(res.data.data[i]['time'])
           y.push(res.data.data[i]['num'])
         }
-        new wxCharts({
+        lineChart = new wxCharts({
           canvasId: 'trend', //canvasID
           type: 'line',   //类型
           categories: x,
           legend:false,     //不显示下面的标识
           animation: true,  //启用动画效果
-          background:'#ffffff',  //背景颜色
+          // background:'#ffffff',  //背景颜色
           series: [{
             name: '',
             data: y,
@@ -94,7 +94,7 @@ Page({
           },
           width: windowWidth,
           height: 200,
-          dataLabel: false, //图线不显示值
+          dataLabel: true, //图线不显示值
           dataPointShape: true,
           extra: {
             lineStyle: 'curve' //平滑曲线
@@ -102,6 +102,13 @@ Page({
         });
       }
     })
+  },
+  touchHandler: function (e) {
+    lineChart.showToolTip(e, {
+      format: function (item, category) {
+        return category + ':' + item.data
+      }
+    });
   },
   //刷新在线设备数目
   update(event) {
@@ -118,7 +125,6 @@ Page({
   //下拉刷新
   onPullDownRefresh() {
     wx.stopPullDownRefresh()
-    //这里和onload函数一致
     this.onLoad()
   }
 });

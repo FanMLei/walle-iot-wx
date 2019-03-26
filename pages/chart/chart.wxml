@@ -19,7 +19,7 @@
           <i-collapse-item title='{{stream.name}}' i-class='stream-title' data-streamId='{{stream.sid}}' bindtap='getChartData'data-unit='{{stream.unit}}' data-symbol='{{stream.symbol}}' wx:for='{{device.stream}}' wx:for-item='stream' wx:key='stream'>
             <!-- 图表 -->
             <view slot="content">
-              <canvas canvas-id="{{stream.sid}}" disable-scroll="true" class="canvas" bindtouchstart="touchHandler"></canvas>
+              <canvas canvas-id="{{stream.sid}}" disable-scroll="true" class="canvas" bindtouchstart="touchHandler" data-canvas="{{stream.sid}}"></canvas>
             </view>
           </i-collapse-item>
         </i-collapse>
