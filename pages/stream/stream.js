@@ -37,7 +37,6 @@ Page({
             }
           }
         }   
-        console.log(str_list)
         this.setData({
           device: dev_list,
           streamInfo: str_list
@@ -163,7 +162,6 @@ Page({
     })
   },
   setDevice: function(e){
-    console.log(e.detail.did)
     this.setData({
       ['newInfo.device_id']: e.detail.did
     })
