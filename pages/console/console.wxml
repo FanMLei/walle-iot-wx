@@ -4,24 +4,24 @@
     <view class='title'>选择设备</view>
     <view>
       <view style='display: inline-block;width:200px;'>
-        <select-box prop-array='{{selectArray}}'></select-box>
+        <select-box prop-array='{{deviceInfo}}'bind:myget='setTopic'></select-box>
       </view>
-      <view style='display:inline-block;float:right;margin-top: -15px;'>
-        <i-button bind:click="handleClick" type="success" inline="true" shape="circle" size="small" style=' margin: 0;padding: 0;'>发送指令</i-button>
+      <view style='display:inline-block;float:right;'>
+        <button type="primary" size='mini' bindtap='sendDevMsg'>发送指令</button>
       </view>
     </view>
     <view class='title'>消息内容</view>
-    <i-input value="{{ devMsg }}" placeholder="请输入消息内容" />
+    <input value="{{ devMsg.payload }}" placeholder="  请输入消息内容" placeholder-style='font-size:14px;color:#7a7777'style='margin-top: 10rpx;border-bottom: 1px solid #e6e7e9;' bindblur='setDevMsg'/>
   </view>
 
   <view class='pannel'>
     发送到自组网络
     <view>
       <view class='title'>消息内容</view>
-      <i-input value="{{ netMsg }}" placeholder="请输入消息内容" />
+      <input value="{{ netMsg.payload }}" placeholder="  请输入消息内容" disabled='true' placeholder-style='font-size:14px;color:#7a7777' style='margin-top: 10rpx;border-bottom: 1px solid #e6e7e9;' />
       <view style='height:90rpx;'>
-        <view style='display:inline-block;float:right;margin-top: -10rpx;'>
-          <i-button bind:click="handleClick" type="success" inline="true" shape="circle" size="small">发送指令</i-button>
+        <view style='display:inline-block;float:right;margin-top: 10rpx;'>
+          <button type="primary"size='mini' disabled='true'>发送指令</button>
         </view>
       </view>
     </view>

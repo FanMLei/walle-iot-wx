@@ -6,13 +6,27 @@ const {
 Page({
   data: {
     color: ['blue', 'green', 'red', 'yellow', 'default'],
-    // selectArray: [{
-    //   "id": "10",
-    //   "text": "会计类"
-    // }, {
-    //   "id": "21",
-    //   "text": "工程类"
-    // }]
+    deviceInfo:[],
+    devMsg:{
+      topic:'',
+      qos:0,
+      payload:''
+    },
+    netMsg:{
+      topic: '',
+      qos: 0,
+      payload: ''
+    }
+  },
+  setTopic:function(e){
+    this.setData({
+      ['devMsg.topic']:e.detail.did
+    })
+  },
+  setDevMsg: function (e) {
+    this.setData({
+      ['devMsg.payload']: e.detail.value
+    })
   },
   quickSend: function(e) {
     let data = {
@@ -36,10 +50,26 @@ Page({
       }
     })
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
+  sendDevMsg: function(){
+    api.sendCmd(this.data.devMsg, (res) => {
+      console.log(res.data)
+      if (res.data.code === 0) {
+        $Toast({
+          content: '发送成功',
+          type: 'success',
+          duration: 1
+        });
+      } else {
+        $Toast({
+          content: '发送失败！',
+          type: 'error',
+          duration: 1
+        });
+      }
+    })
+  },
   onLoad: function(options) {
+    //获取快捷指令信息
     api.cmdInfo((res) => {
       $Toast.hide()
       if (res.data.code === 0) {
@@ -53,14 +83,21 @@ Page({
         })
       }
     })
+    //获取设备信息
+    api.deviceInfo((res) => {
+      if (res.data.code === 0) {
+        $Toast.hide()
+        var dev_list = []
+        for (var i = 0; i < res.data.data.length; i++) {
+          dev_list.push({
+            id: res.data.data[i].cid,
+            text: res.data.data[i].name
+          })
+        }
+        this.setData({
+          deviceInfo: dev_list
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
- 
 })
