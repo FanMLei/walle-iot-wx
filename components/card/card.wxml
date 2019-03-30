@@ -1,7 +1,6 @@
 <!--components/card.wxml-->
 <view class='card-container {{bgColor}}'>
-  <view class='icon-container'>
-    
+  <view class='icon-container'>   
       <image src='../../static/imgs/{{imgs}}.png' mode='aspectFit' class='left-img'></image>
   </view>
   <view class='desc'>
