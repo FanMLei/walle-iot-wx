@@ -1,13 +1,12 @@
 {
   "pages": [ 
+    "pages/index/index",
+    "pages/docs/docs",
     "pages/console/console",
     "pages/home/home",
-    
-    "pages/chart/chart",
-    "pages/index/index",
+    "pages/chart/chart",  
     "pages/aboutme/aboutme",
     "pages/stream/stream",
- 
     "pages/device/device",
     "pages/register/register",
     "pages/userinfo/userinfo",
@@ -15,6 +14,7 @@
     "pages/trigger/trigger",
     "pages/network/network",
     "pages/setting/setting"
+    
   ],
   "window": {
     "backgroundColor":"#e8eaed",

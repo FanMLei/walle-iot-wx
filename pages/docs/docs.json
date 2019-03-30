@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "wemark": "../../components/wemark/wemark"
+  },
+  "navigationBarTitleText": "接入指南"
+}

@@ -62,7 +62,9 @@
     <navigator url="../bind/bind" open-type="navigate" hover-class="btn-hover" hover-stay-time='0'>
       <button class='btn'>更改绑定</button>
     </navigator>
-    <button class='btn'>使用指南</button>
+    <navigator url="../docs/docs" open-type="navigate" hover-class="btn-hover" hover-stay-time='0'>
+      <button class='btn'>接入指南</button>
+    </navigator>
     <button open-type='contact' class='btn'>意见反馈</button>
     <button open-type='share' class='btn'>分享小程序</button>
   </view>
