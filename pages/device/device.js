@@ -172,6 +172,7 @@ Page({
       confirmText: '删除',
       confirmColor: '#e64340',
       success: (res) => {
+        console.log(res.data)
         if (res.confirm) {
           api.deleteDevice({
             did: e.target.dataset.did,

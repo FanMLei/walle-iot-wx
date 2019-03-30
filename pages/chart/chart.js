@@ -4,8 +4,6 @@ const {
 } = require('../../dist/base/index');
 
 import api from '../../api/api.js'
-// 基础配置
-import config from '../../config/config.js'
 
 var wxCharts = require('../../utils/wxcharts-min.js');
 

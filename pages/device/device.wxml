@@ -1,9 +1,9 @@
 <wxs module='handle'>
   var status = function(s) {
     if (s) {
-      return '离线'
-    } else {
       return '在线'
+    } else {
+      return '离线'
     }
   };
   var tags = function(t) {
@@ -20,10 +20,14 @@
       return ''
     }
   };
+  var color = function(){
+    return ['blue', 'green', 'red', 'yellow', 'default'][Math.floor(Math.random() * 5)]
+  };
   module.exports = {
     status: status,
     tags: tags,
     introduce: introduce,
+    color:color
   };
 </wxs>
 <view>
@@ -84,7 +88,7 @@
           <view class='title'>设备标签:</view>
         </i-col>
         <i-col span='18'>
-          <i-tag wx:for='{{handle.tags(item.tags)}}' wx:key='' wx:for-item="tag" style='margin: 0 4px;'>{{tag}}</i-tag>
+          <i-tag wx:for='{{handle.tags(item.tags)}}' wx:key='' wx:for-item="tag" style='margin: 0 4px;' color="{{handle.color()}}">{{tag}}</i-tag>
         </i-col>
       </i-row>
       <i-row>

@@ -26,7 +26,6 @@
       </view>
     </view>
   </view>
-
   <view class='tags-pannel'>
     快捷指令
     <view class='edit'>编辑</view>
