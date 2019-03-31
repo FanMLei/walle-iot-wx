@@ -32,6 +32,7 @@ Page({
       console.error('getSystemInfoSync failed!');
     }
   },
+  // 图表点击事件
   touchHandler: function(e) {
     this.data.charts[e.target.dataset.canvas].showToolTip(e, {
       // background: '#7cb5ec',
@@ -39,6 +40,50 @@ Page({
         return category + ':' + item.data
       }
     });
+  },
+  // 刷新图表
+  refresh: function(e) {
+    api.historyData(
+      e.currentTarget.dataset.streamid,
+      (res) => {
+        console.log(res.data.data)
+        $Toast.hide()
+        if (res.data.code === 0) {
+          var x = []
+          var y = []
+          for (var i = 0; i < res.data.data.length; i++) {
+            x.push(res.data.data[i]['time'])
+            y.push(res.data.data[i]['num'])
+          }
+          //防止返回数据为空造成卡死状况
+          if (x.length <= 0) x = ['']
+          if (y.length <= 0) y = ['']
+          //调整X轴和提示栏
+          if (x[0]) {
+            var legend = x[0].substr(0, 10) + '至' + x[x.length - 1].substr(0, 10)
+            for (var t = 0; t < x.length; t++) {        
+              x.splice(t, 1, x[t].slice(11, x[t].length))
+            }
+          } else {
+            var legend = '暂时无数据！'
+          }
+          //存入data中
+          this.data.chartData[e.currentTarget.dataset.streamid] = {
+            x: x,
+            y: y
+          }
+          this.data.charts[e.currentTarget.dataset.chartid].updateData({
+            categories: x,
+            series: [{
+              name: legend,
+              data: y,
+              format: function(val, name) {
+                return val ;
+              }
+            }],
+          });
+        }
+      })
   },
   //获取数据流数据并刷新到相应的chart中
   getChartData: function(event) {
@@ -60,17 +105,22 @@ Page({
             if (x.length <= 0) x = ['']
             if (y.length <= 0) y = ['']
             //调整X轴和提示栏
-            if (x[0]){
+            if (x[0]) {
               var legend = x[0].substr(0, 10) + '至' + x[x.length - 1].substr(0, 10)
               for (var t = 0; t < x.length; t++) {
                 // if (t % 10 != 0) {
                 //   x.splice(t, 1, '')
                 // } else {
-                  x.splice(t, 1, x[t].slice(11, x[t].length))
+                x.splice(t, 1, x[t].slice(11, x[t].length))
                 // }
               }
-            }else{
+            } else {
               var legend = '暂时无数据！'
+            }
+            if (event.currentTarget.dataset.unit || event.currentTarget.dataset.symbol ){
+              var yTitle = event.currentTarget.dataset.unit + '(' + event.currentTarget.dataset.symbol + ')'
+            }else{
+              var yTitle='无'
             }
             //存入data中
             this.data.chartData[event.currentTarget.dataset.streamid] = {
@@ -94,7 +144,7 @@ Page({
                 disableGrid: true
               },
               yAxis: {
-                title: event.currentTarget.dataset.unit + '(' + event.currentTarget.dataset.symbol + ')',
+                title: yTitle,
                 format: function(val) {
                   return val.toFixed(2);
                 },
