@@ -118,7 +118,7 @@ Page({
           dataLabel: true, //图线不显示值
           dataPointShape: true,
           extra: {
-            lineStyle: 'curve' //平滑曲线
+            // lineStyle: 'curve' //平滑曲线
           }
         });
       }
