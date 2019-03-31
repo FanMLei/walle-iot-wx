@@ -1,31 +1,3 @@
-<wxs module='handle'>
-  var status = function(s) {
-    if (s) {
-      return '离线'
-    } else {
-      return '在线'
-    }
-  };
-  var tags = function(t) {
-    if (t) {
-      return t.split(',')
-    } else {
-      return ['无']
-    }
-  };
-  var introduce = function(i) {
-    if (i) {
-      return i
-    } else {
-      return ''
-    }
-  };
-  module.exports = {
-    status: status,
-    tags: tags,
-    introduce: introduce,
-  };
-</wxs>
 <view>
   <view wx:if="{{streamInfo.length>0}}">
     <view wx:for="{{streamInfo}}" wx:key="index" class='pannel'>

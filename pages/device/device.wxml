@@ -96,7 +96,7 @@
           <view class='title'>设备简介:</view>
         </i-col>
         <i-col span='18'>
-          <text selectable='true' style='font-size:14px'>{{item.introduce}}</text>
+          <text selectable='true' style='font-size:14px'>{{handle.introduce(item.introduce)}}</text>
         </i-col>
       </i-row>
       <i-row>
