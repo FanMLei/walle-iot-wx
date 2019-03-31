@@ -1,0 +1,53 @@
+page {
+  height: 96%;
+  background-color: #f7f7f7;
+}
+.pannel {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 2% 4%;
+  margin: 2%;
+  position: relative;
+}
+.title{
+  line-height: 30px;
+  display: inline-block;
+  font-size: 14px;
+  color: #4e4c4c
+}
+.data{
+  display: inline-block; 
+  line-height: 30px;
+  font-size: 15px;
+}
+.edit-btn{
+  margin-top: 5px;
+  width: 96%;
+  height: 30px;
+  font-size: 12px;
+  line-height: 30px;
+}
+.btn{
+  width: 96%;
+  margin-bottom: 10px;
+}
+.label{
+  line-height: 30px;
+}
+.input{
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.textarea{
+  width: 100%;
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.row{
+  margin: 2px;
+}
+.img{
+  height: 30px;
+}

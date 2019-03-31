@@ -286,6 +286,22 @@ let cmdInfo = function(success) {
     fail: failFunc,
   })
 }
+let deleteCMD = function (data, success){
+  wx: wx.request({
+    url: quick_cmd,
+    method: 'DELETE',
+    data,
+    header: headers,
+    success,
+    fail(res) {
+      $Toast({
+        content: '删除失败',
+        type: 'error',
+        duration: 1
+      });
+    },
+  })
+}
 //发送指令
 let sendCmd = function(data, success) {
   wx: wx.request({
@@ -431,6 +447,7 @@ module.exports = {
   deviceInfo,
   historyData,
   cmdInfo,
+  deleteCMD,
   sendCmd,
   createDevice,
   deleteDevice,

@@ -28,6 +28,11 @@ Page({
       ['devMsg.payload']: e.detail.value
     })
   },
+  editCMD: function(){
+    wx.navigateTo({
+      url: '../cmd/cmd'
+    })
+  },
   quickSend: function(e) {
     let data = {
       'topic': e.target.dataset.cmd.topic,

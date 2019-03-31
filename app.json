@@ -1,11 +1,12 @@
 {
   "pages": [ 
+    "pages/cmd/cmd",
+    "pages/aboutme/aboutme",   
     "pages/index/index",
     "pages/docs/docs",
     "pages/console/console",
     "pages/home/home",
-    "pages/chart/chart",  
-    "pages/aboutme/aboutme",
+    "pages/chart/chart",   
     "pages/stream/stream",
     "pages/device/device",
     "pages/register/register",

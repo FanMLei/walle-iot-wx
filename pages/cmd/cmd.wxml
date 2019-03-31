@@ -1,0 +1,58 @@
+<wxs module='handle'>
+  var introduce = function(i) {
+    if (i) {
+      return i
+    } else {
+      return '无'
+    }
+  };
+  module.exports = {
+    introduce: introduce
+  };
+</wxs>
+<view>
+  <view wx:if="{{cmdInfo.length>0}}">
+    <view wx:for="{{cmdInfo}}" wx:key="index" class='pannel'>
+     <i-row>
+        <i-col span="5" i-class="col-class">
+          <view class='title'>指令ID:</view>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <text selectable='true' class='data'>{{item.cmd_id}}</text>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <image class='img'mode='aspectFit'bindtap='remove'data-cmdid='{{item.cmd_id}}'data-token='{{item.token}}'data-index='{{index}}'src='../../static/imgs/delete.png'/>
+        </i-col>
+      </i-row>
+       <i-row>
+        <i-col span="5" i-class="col-class">
+          <view class='title'>接收设备:</view>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <text selectable='true' class='data'>{{item.topic}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col span="5" i-class="col-class">
+          <view class='title'>消息类容:</view>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <text selectable='true' class='data'>{{item.payload}}</text>
+        </i-col>
+      </i-row>
+      <i-row>
+        <i-col span="5" i-class="col-class">
+          <view class='title'>消息等级:</view>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <text selectable='true' class='data'>{{item.qos}}</text>
+        </i-col>
+      </i-row>
+    </view>
+  </view>
+  <view wx:else>
+    <no-data title='未找到指令信息，请先创建一个快捷指令！' />
+  </view>
+  <button type='primary' class='btn' bindtap='create'>创建指令</button>
+  <i-toast id="toast" />
+</view>

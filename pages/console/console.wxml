@@ -28,7 +28,7 @@
   </view>
   <view class='tags-pannel'>
     快捷指令
-    <view class='edit'>编辑</view>
+    <view class='edit'bindtap='editCMD'>编辑</view>
     <view wx:if='{{quickCMD.length>0}}' style="padding-top:20px">
       <i-tag class="tags" color="{{item.color}}" data-cmd="{{item}}" bindtap="quickSend" wx:for="{{quickCMD}}" wx:key='{{index}}'>
         {{item.name}}
