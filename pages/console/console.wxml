@@ -35,7 +35,7 @@
       </i-tag>
     </view>
     <view wx:else>
-      <no-data title='未找到已经保存快捷指令！' />
+      <no-data title='未找到快捷指令信息！' />
     </view>
   </view>
   <i-toast id="toast" />

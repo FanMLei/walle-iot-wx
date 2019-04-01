@@ -4,7 +4,11 @@ const {
 import api from '../../api/api.js'
 Page({
   data: {
-    cmdInfo:[]
+    cmdInfo:[],
+    modal:true,
+    newInfo:{
+      qos:0
+    }
   },
   remove: function(e){
     wx.showModal({
@@ -42,6 +46,57 @@ Page({
           })
         }
       }
+    })
+  },
+  create: function(){
+    this.setData({
+      modal:false
+    })
+  },
+  cancel: function(){
+    this.setData({
+      modal:true,
+      newInfo:{
+        qos:0
+      }
+    })
+  },
+  confirm:function(){
+    this.setData({
+      modal:true
+    })
+    api.createCMD(this.data.newInfo, (res) => {
+      if (res.data.code === 0) {
+        $Toast({
+          content: '创建成功',
+          type: 'success',
+          duration: 1
+        });
+        //重新获取设备信息
+        this.onLoad()
+      } else {
+        $Toast({
+          content: res.data.msg,
+          type: 'error',
+          duration: 1
+        });
+      }
+    })
+  },
+  setName: function(e){
+    this.setData({
+      ['newInfo.name']: e.detail.value
+    })
+  },
+  setTopic: function (e) {
+    console.log(e)
+    this.setData({
+      ['newInfo.topic']: e.detail.did
+    })
+  },
+  setPayload: function (e) {
+    this.setData({
+      ['newInfo.payload']: e.detail.value
     })
   },
   onLoad: function (options) {

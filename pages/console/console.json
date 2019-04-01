@@ -5,6 +5,5 @@
     "i-toast": "../../dist/toast/index",
     "no-data": "../../components/no-data/no-data"
   },
-  "navigationBarTitleText": "指令",
-  "enablePullDownRefresh": false
+  "navigationBarTitleText": "指令"
 }

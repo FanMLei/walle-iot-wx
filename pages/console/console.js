@@ -73,7 +73,7 @@ Page({
       }
     })
   },
-  onLoad: function(options) {
+  onShow: function(options) {
     //获取快捷指令信息
     api.cmdInfo((res) => {
       $Toast.hide()
@@ -104,5 +104,10 @@ Page({
         })
       }
     })
+  },
+  onPullDownRefresh() {
+    // 刷新
+    wx.stopPullDownRefresh()
+    this.onShow()
   },
 })

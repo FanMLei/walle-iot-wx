@@ -49,5 +49,5 @@ page {
   margin: 2px;
 }
 .img{
-  height: 30px;
+  height: 25px;
 }

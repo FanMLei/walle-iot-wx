@@ -128,7 +128,6 @@ Page({
       modal1: true,
     })
     api.createStream(this.data.newInfo, (res) => {
-      console.log(res.data)
       if (res.data.code === 0) {
         $Toast({
           content: '创建成功',

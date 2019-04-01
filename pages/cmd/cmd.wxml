@@ -13,18 +13,27 @@
 <view>
   <view wx:if="{{cmdInfo.length>0}}">
     <view wx:for="{{cmdInfo}}" wx:key="index" class='pannel'>
-     <i-row>
+    <i-row>
+        <i-col span="5" i-class="col-class">
+          <view class='title'>指令名称:</view>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <text selectable='true' class='data'>{{item.name}}</text>
+        </i-col>
+        <i-col span="6" i-class="col-class">
+          <image class='img' mode='aspectFit' bindtap='remove' data-cmdid='{{item.cmd_id}}' data-token='{{item.token}}' data-index='{{index}}' src='../../static/imgs/delete.png' />
+        </i-col>
+      </i-row>
+      <i-row>
         <i-col span="5" i-class="col-class">
           <view class='title'>指令ID:</view>
         </i-col>
         <i-col span="6" i-class="col-class">
           <text selectable='true' class='data'>{{item.cmd_id}}</text>
         </i-col>
-        <i-col span="6" i-class="col-class">
-          <image class='img'mode='aspectFit'bindtap='remove'data-cmdid='{{item.cmd_id}}'data-token='{{item.token}}'data-index='{{index}}'src='../../static/imgs/delete.png'/>
-        </i-col>
+        
       </i-row>
-       <i-row>
+      <i-row>
         <i-col span="5" i-class="col-class">
           <view class='title'>接收设备:</view>
         </i-col>
@@ -53,6 +62,41 @@
   <view wx:else>
     <no-data title='未找到指令信息，请先创建一个快捷指令！' />
   </view>
+  <!-- 新建弹框 -->
+  <modal id="bulid" hidden="{{modal}}" title="新建指令" confirm-text="确定" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>指令名称:</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{newInfo.name}}' type='text' class='input' placeholder='  必填' bindblur='setName' />
+      </i-col>
+    </i-row>
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>选择设备:</text>
+      </i-col>
+      <i-col span="18">
+        <select-box prop-array='{{deviceInfo}}' bind:myget='setTopic'></select-box>
+      </i-col>
+    </i-row>
+    <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>消息内容:</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{newInfo.payload}}' type='text' class='input'placeholder='  必填' bindblur='setPayload' />
+      </i-col>
+    </i-row>
+     <i-row class='row'>
+      <i-col span="6">
+        <text class='label'>消息等级:</text>
+      </i-col>
+      <i-col span="18">
+        <input value='{{newInfo.qos}}' type='text' class='input' value='0' disabled='true'/>
+      </i-col>
+    </i-row>
+  </modal>
   <button type='primary' class='btn' bindtap='create'>创建指令</button>
   <i-toast id="toast" />
 </view>
