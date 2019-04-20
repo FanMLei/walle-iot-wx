@@ -1,6 +1,6 @@
 <view class="container">
-  <text class='title'>用户注册</text>
-  <form bindsubmit="formSubmit" class='form'>
+  <!-- <text class='title'>用户注册</text> -->
+  <!-- <form bindsubmit="formSubmit" class='form'>
     <i-row>
       <i-col span="6">
         <text class='label'>登录名称</text>
@@ -34,6 +34,14 @@
       </i-col>
     </i-row>
     <button class='submit_btn' form-type="submit" type='primary' disabled='{{disabled}}'>注册</button>
-  </form>
-  <text class='error' wx:if='{{error_info}}'>{{error_info}}</text>
+  </form> -->
+  <view class='form'>
+    <i-input value="{{ username }}" type='text' title="登录名称：" autofocus placeholder="用户名（不少于4个字符长度）" maxlength="16"  bind:blur='setUsername' error="{{ uflag }}"/>
+    <i-input value="{{ password1 }}" type="password" title="登录密码：" placeholder="最少8位字符长度" maxlength="32" bind:blur='setPassword1' error="{{ p1flag }}" />
+    <i-input value="{{ password2 }}" type="password" title="确认密码：" placeholder="请输入确认密码" maxlength="32" bind:blur='setPassword2' error="{{ p2flag }}" />
+    <i-input value="{{ email }}" type='text' title="邮箱地址：" placeholder="用于报警通知（选填）" maxlength='32' bind:blur='setEmail' error="{{ eflag }}"/>
+    <view class='tip'>{{error_info}}</view>
+    <button type='primary' disabled='{{disabled}}' bindtap='register'>注册</button>
+  </view>
+  
 </view>
