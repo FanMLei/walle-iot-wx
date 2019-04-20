@@ -11,3 +11,18 @@
   line-height: 28px;
   color: red;
 } 
+.verify{
+  position:relative;
+  align-content: center;
+}
+.verify-input{
+  display: inline-block;
+  width: 70%;
+}
+.verify-code{
+  display: inline-block;
+   position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+  width: 30%;
+}
