@@ -1,4 +1,62 @@
-<!--pages/userinfo/userinfo.wxml-->
-<view class="container">
-  <text>暂不开放!</text>
+<wxs module='handle'>
+  var is_male = function(gender) {
+    if (gender == null) return false
+    else if (gender) return true
+    else return false
+  };
+  var is_female = function(gender) {
+    if (gender == null) return false
+    else if (!gender) return true
+    else return false
+  };
+
+  module.exports = {
+    is_male: is_male,
+    is_female: is_female
+  };
+</wxs>
+<view class='panel'>
+  <i-panel title='基本信息'>
+    <i-input value="{{ username }}" type='text' title="用户名：" placeholder="用户名（不少于4个字符长度）" maxlength="16" disabled='{{disabled}}' />
+    <i-input value="{{ uid }}" type="number" title="用户ID：" disabled='true' />
+    <view style='height:48px'>
+      <radio-group bindchange="radioChange" class='input'>
+        <text class="title" space='emsp'>性 别：</text>
+        <label class="radio">
+          男
+          <radio value="1" disabled='{{edit}}' checked='{{handle.is_male(sex)}}' />
+        </label>
+        <label class="radio">
+          女
+          <radio value="0" disabled='{{edit}}' checked='{{handle.is_female(sex)}}' />
+        </label>
+      </radio-group>
+    </view>
+    <view style='height:48px'>
+      <picker mode="date" value="{{birthday}}" start="1900-01-01" end="2019-04-21" bindchange="bindDateChange" disabled='{{edit}}' class='input'>
+        <text class="title" space='emsp'>生 日:</text>
+        <text style='margin-left:8px;' class='radio'> {{birthday}}</text>
+      </picker>
+    </view>
+  </i-panel>
+</view>
+<view class='panel'>
+  <i-panel title='通信方式'>
+    <i-input value="{{ email }}" type='text' title="邮箱：" disabled='{{disabled}}' />
+    <i-input value="{{ tel }}" type="text" title="电话：" disabled='{{disabled}}' />
+    <i-input value="{{ address }}" type="text" title="地址：" disabled='{{disabled}}' />
+  </i-panel>
+</view>
+<view class='panel'>
+  <i-panel title='其他信息'>
+    <i-input value="{{ introduction }}" type='textarea' title="介绍：" disabled='{{disabled}}' />
+   
+  </i-panel>
+</view>
+<view wx:if='{{edit}}' style="width: 96%;margin:2%">
+  <button type='primary' bindtap='edit'>编辑</button>
+</view>
+<view wx:else style="width: 96%;margin:2%;">
+  <button type='primary' style='width:48%;display:inline-block;margin-right:2%'>确定</button>
+  <button type='warn' style='width:48%;display:inline-block;margin-left:2%'>返回</button>
 </view>

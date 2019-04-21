@@ -1,1 +1,30 @@
-/* pages/userinfo/userinfo.wxss */
+page {
+  height: 100%;
+  background-color: #f7f7f7;
+}
+
+.panel {
+  margin: 2%;
+  padding: 2%;
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.radio {
+  text-align: center;
+  font-size: 14px;
+  color: #495060;
+  padding: 7px 15px;
+}
+
+.title {
+  text-align: center;
+  font-size: 14px;
+  color: #495060;
+  padding: 7px 0 7px 15px;
+}
+.input{
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
