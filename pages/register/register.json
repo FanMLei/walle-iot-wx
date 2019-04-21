@@ -2,8 +2,7 @@
   "usingComponents": {
     "i-row": "../../dist/row/index",
     "i-col": "../../dist/col/index",
-    "i-input": "../../dist/input/index",
-    "i-panel": "../../dist/panel/index"
+    "i-input": "../../dist/input/index"
   },
   "navigationBarTitleText": "用户注册"
 }

@@ -1,8 +1,9 @@
-.form{
+.form {
   width: 96%;
   padding: 2%;
 }
-.tip{
+
+.tip {
   width: 100%;
   margin: 5px;
   height: 28px;
@@ -10,19 +11,22 @@
   font-size: 14px;
   line-height: 28px;
   color: red;
-} 
-.verify{
-  position:relative;
+}
+
+.verify {
+  position: relative;
   align-content: center;
 }
-.verify-input{
+
+.verify-input {
   display: inline-block;
   width: 70%;
 }
-.verify-code{
+
+.verify-code {
   display: inline-block;
-   position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   width: 30%;
 }
