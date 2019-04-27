@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/userinfo/userinfo",
+    
     "pages/index/index",
     "pages/cmd/cmd",
     "pages/aboutme/aboutme",
@@ -11,6 +11,7 @@
     "pages/stream/stream",
     "pages/device/device",
     "pages/register/register",
+    "pages/userinfo/userinfo",
     "pages/bind/bind",
     "pages/trigger/trigger",
     "pages/network/network",
