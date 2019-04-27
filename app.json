@@ -1,56 +1,58 @@
 {
-  "pages": [ 
+  "pages": [
+    "pages/userinfo/userinfo",
     "pages/index/index",
     "pages/cmd/cmd",
-    "pages/aboutme/aboutme",   
+    "pages/aboutme/aboutme",
     "pages/docs/docs",
     "pages/console/console",
     "pages/home/home",
-    "pages/chart/chart",   
+    "pages/chart/chart",
     "pages/stream/stream",
     "pages/device/device",
     "pages/register/register",
-    "pages/userinfo/userinfo",
     "pages/bind/bind",
     "pages/trigger/trigger",
     "pages/network/network",
     "pages/setting/setting"
-    
   ],
   "window": {
-    "backgroundColor":"#e8eaed",
+    "backgroundColor": "#e8eaed",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black",
-    "enablePullDownRefresh":true
+    "enablePullDownRefresh": true
   },
   "tabBar": {
-    "selectedColor":"#1296db",
-    "borderStyle":"black",
-    "list": [{
-      "pagePath": "pages/home/home",
-      "text": "总览",
-      "iconPath": "static/imgs/home.png",
-      "selectedIconPath": "static/imgs/home_select.png"
-    },
-    {
-      "pagePath": "pages/chart/chart",
-      "text": "历史数据",
-      "iconPath": "static/imgs/history_chart.png",
-      "selectedIconPath": "static/imgs/history_chart_select.png"
-    },
-    {
-      "pagePath": "pages/console/console",
-      "text": "指令",
-      "iconPath": "static/imgs/console.png",
-      "selectedIconPath": "static/imgs/console_select.png"
-    },
-    {
-      "pagePath": "pages/aboutme/aboutme",
-      "text": "我的",
-      "iconPath": "static/imgs/me.png",
-      "selectedIconPath": "static/imgs/me_select.png"
-    }]
-  }
+    "selectedColor": "#1296db",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "总览",
+        "iconPath": "static/imgs/home.png",
+        "selectedIconPath": "static/imgs/home_select.png"
+      },
+      {
+        "pagePath": "pages/chart/chart",
+        "text": "历史数据",
+        "iconPath": "static/imgs/history_chart.png",
+        "selectedIconPath": "static/imgs/history_chart_select.png"
+      },
+      {
+        "pagePath": "pages/console/console",
+        "text": "指令",
+        "iconPath": "static/imgs/console.png",
+        "selectedIconPath": "static/imgs/console_select.png"
+      },
+      {
+        "pagePath": "pages/aboutme/aboutme",
+        "text": "我的",
+        "iconPath": "static/imgs/me.png",
+        "selectedIconPath": "static/imgs/me_select.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
 }

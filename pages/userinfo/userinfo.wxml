@@ -58,5 +58,6 @@
 </view>
 <view wx:else style="width: 96%;margin:2%">
   <button type='primary' style='width:48%;display:inline-block;margin-right:2%' disabled='{{confirm}}' bindtap='confirm'>确定</button>
-  <button type='warn' style='width:48%;display:inline-block;margin-left:2%' bindtap='cancel'>返回</button>
+  <button type='warn' style='width:48%;display:inline-block;margin-left:2%' bindtap='cancel'>取消</button>
 </view>
+<i-toast id="toast" />

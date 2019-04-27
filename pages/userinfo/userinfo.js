@@ -1,9 +1,13 @@
+const {
+  $Toast
+} = require('../../dist/base/index');
 import api from '../../api/api.js'
 Page({
   data: {
     edit: true,
     confirm : false,
     username: '',
+    token: '',
     uid: '',
     email: '',
     sex: '',
@@ -18,7 +22,6 @@ Page({
   },
   onLoad: function(options) {
     api.userInfo((res) => {
-      console.log(res.data)
       this.setData(
         res.data.data,
       )
@@ -132,9 +135,29 @@ Page({
     }
   },
   confirm(){
-    console.log(
-      this.data
-    )
+    var data = {
+      'username': this.data.username,
+      'token':this.data.token,
+      'email': this.data.email,
+      'sex': this.data.sex,
+      'birthday': this.data.birthday,
+      'tel': this.data.tel,
+      'address': this.data.address,
+      'introduction': this.data.introduction,
+    }
+    api.editUserinfo(data,(res)=>{
+      if(res.data.code === 0){
+        $Toast({
+          content: '修改成功',
+          type: 'success',
+          duration: 1
+        });
+        this.setData({
+          edit:true,
+          userInfo:data
+        })
+      }
+    })
   },
   cancel(){
     this.setData({
@@ -146,6 +169,9 @@ Page({
       tel: this.data.userinfo.tel,
       address: this.data.userinfo.address,
       introduction: this.data.userinfo.introduction,
+      uflag: false,
+      eflag: false,
+      tflag: false
     })
   }
 })

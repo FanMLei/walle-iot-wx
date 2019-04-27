@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "i-toast": "../../dist/toast/index",
     "i-input": "../../dist/input/index",
     "i-panel": "../../dist/panel/index",
     "i-radio-group": "../../dist/radio-group/index",

@@ -6,8 +6,10 @@ const {
 const md5 = require('../utils/md5.min.js')
 
 // baseURL
-const baseUrl = 'https://iotforfml.cn'    
-// const baseUrl = 'http://127.0.0.1:8000'
+// const baseUrl = 'https://iotforfml.cn'    
+const baseUrl = 'http://127.0.0.1:8000'
+
+const userinfo = baseUrl + '/user/info' //用户信息
 
 const login_url = baseUrl + '/user/login_wx' //用户登录
 const bind_url = baseUrl + '/user/bind_wx' //绑定用户
@@ -433,7 +435,6 @@ let deleteStream = function(data,success){
 }
 //修改数据流信息
 let editStream = function(data,success){
-  console.log(data)
   wx: wx.request({
     url: stream_info,
     method: 'PUT',
@@ -449,6 +450,26 @@ let editStream = function(data,success){
     },
   })
 }
+
+let userInfo = function(success){
+  wx.request({
+    url: userinfo,
+    header: headers,
+    success,
+  })
+}
+
+let editUserinfo = function(data,success){
+  wx.request({
+    url: userinfo,
+    header: headers,
+    method: 'PUT',
+    data,
+    success,
+   
+  })
+}
+
 
 module.exports = {
   login,
@@ -472,5 +493,7 @@ module.exports = {
   streamInfo,
   createStream,
   deleteStream,
-  editStream
+  editStream,
+  userInfo,
+  editUserinfo
 }
