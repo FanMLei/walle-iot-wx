@@ -1,13 +1,14 @@
 <wxs module='handle'>
   var is_male = function(gender) {
     if (gender == null) return false
-    else if (gender) return true
+    else if (gender=='1') return true
     else return false
+
   };
   var is_female = function(gender) {
     if (gender == null) return false
-    else if (!gender) return true
-    else return false
+    else if (gender=='0') return true
+    else  return false
   };
 
   module.exports = {
@@ -24,11 +25,11 @@
         <text class="title" space='emsp'>性 别：</text>
         <label class="radio">
           男
-          <radio value="1" disabled='{{edit}}' checked='{{handle.is_male(sex)}}' />
+          <radio value='1' disabled='{{edit}}' checked='{{handle.is_male(sex)}}' />
         </label>
         <label class="radio">
           女
-          <radio value="0" disabled='{{edit}}' checked='{{handle.is_female(sex)}}' />
+          <radio value='0' disabled='{{edit}}' checked='{{handle.is_female(sex)}}' />
         </label>
       </radio-group>
     </view>
@@ -55,7 +56,7 @@
 <view wx:if='{{edit}}' style="width: 96%;margin:2%">
   <button type='primary' bindtap='edit'>编辑</button>
 </view>
-<view wx:else style="width: 96%;margin:2%;">
+<view wx:else style="width: 96%;margin:2%">
   <button type='primary' style='width:48%;display:inline-block;margin-right:2%' disabled='{{confirm}}' bindtap='confirm'>确定</button>
   <button type='warn' style='width:48%;display:inline-block;margin-left:2%' bindtap='cancel'>返回</button>
 </view>

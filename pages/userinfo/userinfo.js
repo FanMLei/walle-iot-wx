@@ -11,12 +11,11 @@ Page({
     tel: '',
     address: '',
     introduction: '',
-    userinfo: {},
+    userinfo: {},  // 用于存储初始数据
     uflag:false,
     eflag: false,
     tflag: false
   },
-
   onLoad: function(options) {
     api.userInfo((res) => {
       console.log(res.data)
@@ -39,9 +38,15 @@ Page({
     })
   },
   sexChange(e) {
-    this.setData({
-      sex: e.detail.value
-    })
+    if(e.detail.value=='0'){
+      this.setData({
+        sex: false
+      })
+    }else{
+      this.setData({
+        sex: true
+      })
+    }
   },
   nameChange(e) {
     this.setData({
@@ -116,7 +121,6 @@ Page({
   //检查填写的信息是否正确，如果无误则可提交修改
   totalCheck(){
     if (!this.data.uflag && !this.data.eflag && !this.data.tflag){
- 
       this.setData({
         confirm : false
       })
